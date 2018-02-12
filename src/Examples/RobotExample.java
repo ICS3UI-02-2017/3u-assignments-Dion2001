@@ -65,6 +65,10 @@ public class RobotExample {
         
         //Move up
         Jeffery.move(4);
+        
+        // pick up thing
+        Jeffery.pickThing();
+        
        
         
         
