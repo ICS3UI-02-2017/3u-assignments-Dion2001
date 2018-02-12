@@ -68,9 +68,12 @@ public class RobotExample {
         
         // pick up thing
         Jeffery.pickThing();
-        
+
+        // Turn Left, Move forward
+        Jeffery.turnLeft();
+        Jeffery.move(3);
        
-        
-        
+        // Change color
+        Jeffery.setColor(Color.pink);
     }
 }
