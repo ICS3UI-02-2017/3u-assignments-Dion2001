@@ -1,0 +1,16 @@
+
+1 
+a) True
+b) True
+C) False
+d) False
+e) False
+f) True
+g) True
+
+2. They will have the same outcome because if the robot can not pick the thing 
+in the first one statement, it will go left and will go right if it can pick 
+thing. And since there is an not at the beginning of the second statement, if the
+ robot cannot pick the thing it will go left and if it can pick the thing it 
+will go right. In the end the statements are the same because they are just say 
+the same thing just in a different way. 
