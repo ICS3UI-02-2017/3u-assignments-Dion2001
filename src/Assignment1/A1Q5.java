@@ -45,5 +45,31 @@ public class A1Q5 {
         
         //create walls
         new Wall(kw, 2, 3, Direction.WEST);
+        new Wall(kw, 2, 3, Direction.NORTH);
+        new Wall(kw, 2, 3, Direction.EAST);
+        new Wall(kw, 3, 3, Direction.EAST);
+        new Wall(kw, 3, 3, Direction.SOUTH);
+        
+        
+        //move Jeffery to collect 3 of the objects
+        Jeffery.move();
+        Jeffery.pickThing();
+        Jeffery.turnLeft();
+        Jeffery.move();
+        Jeffery.pickThing();
+        Jeffery.turnLeft();
+        Jeffery.move();
+        Jeffery.pickThing();
+        
+        //move Rob to pick of 2 of items and meet Jeffery
+        Rob.turnAround();
+        Rob.move();
+        Rob.turnRight();
+        Rob.move();
+        Rob.pickThing();
+        Rob.move();
+        Rob.pickThing();
+        Rob.turnLeft();
+        
     }
 }
