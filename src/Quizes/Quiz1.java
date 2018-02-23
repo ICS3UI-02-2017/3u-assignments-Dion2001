@@ -67,7 +67,7 @@ public class Quiz1 {
        rob.move();
        rob.pickThing();
        
-       // go down mountain puting the lights down on eveery step
+       // go down mountain puting the lights down on every step
        rob.move();
        rob.putThing();
        rob.move();
@@ -84,7 +84,7 @@ public class Quiz1 {
        rob.turnRight();
        rob.move();
        rob.putThing();
-       rob.turnRight();
+       rob.turnLeft();
        rob.move();
     }
 }
