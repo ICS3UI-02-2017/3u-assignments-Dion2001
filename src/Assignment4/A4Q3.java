@@ -29,7 +29,7 @@ public class A4Q3 {
         String three =input.nextLine();
         String four =input.nextLine();
         
-        System.out.println("Your numbers were " + one + "," + two + "," + three + "," + four);
+        System.out.println("Your numbers were " + one + ", " + two + ", " + three + ", " + four + ".");
         
         
     }
