@@ -31,9 +31,13 @@ public class A4Q2 {
         // Try again if lower then 0
         
         while(inches < 0){
-            System.out.println("Please try agian...");
+            System.out.println("Please try again...");
+            System.out.print("Please enter the measurement in inches you wish to convert: ");
          inches = input.nextDouble();
          cm = 2.54 * inches; 
+         System.out.println(inches + " is the same as " + cm + " in centimetres");
+         
+         
     }
 }
 }
