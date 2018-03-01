@@ -23,6 +23,9 @@ public class A3Q2 {
         //create city
         City kw = new City();
         
+        // counters
+        kw.showThingCounts(true);
+        
         // create robot
         RobotSE rob= new RobotSE(kw, 1, 1, Direction.EAST);
         
@@ -37,5 +40,21 @@ public class A3Q2 {
         new Thing(kw, 1, 1);
         new Thing(kw, 1, 1);
         new Thing(kw, 1, 1);
+        
+        // Move things to the pile on right
+        int numberOfMoves = 10;
+        
+        while(numberOfMoves >0){
+            rob.pickThing();
+            rob.move();
+            rob.putThing();
+            rob.turnAround();
+            rob.move();
+            rob.turnAround();
+            numberOfMoves = numberOfMoves -1;
+            
+        }
+        
+        rob.move();
     }
 }

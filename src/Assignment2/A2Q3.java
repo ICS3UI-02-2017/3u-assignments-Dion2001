@@ -21,23 +21,24 @@ public class A2Q3 {
 
         //create city
         City kw = new City();
-                
-       //create robot
-       RobotSE Ferb= new RobotSE(kw, 5, 3, Direction.EAST);     
-    
-    
-    //move to face north
-    if(!Ferb.isFacingNorth()){
+
+        //create robot
+        RobotSE Ferb = new RobotSE(kw, 5, 3, Direction.EAST);
+
+
+        //move to face north
+        if (!Ferb.isFacingNorth()) {
+            Ferb.turnLeft();
+        }
+
+        while (Ferb.getStreet() > 0) {
+            Ferb.move();
+        }
         Ferb.turnLeft();
+        while (Ferb.getAvenue() > 0) {
+            Ferb.move();
+        }
+
+
     }
-        
-    while(Ferb.getStreet()>0){
-         Ferb.move();
-    }
-    Ferb.turnLeft();
-         while(Ferb.getAvenue()>0){
-             Ferb.move();
-    }
-      
-    
-}}
+}

@@ -25,7 +25,7 @@ public class A3Q3 {
         //create robot
         RobotSE rob = new RobotSE(kw, 1, 1, Direction.EAST, 20);
 
-        int numberOfMoves = 4;
+        int numberOfMoves = 2;
 
         while (numberOfMoves > 0) {
             while(rob.getAvenue() != 6 && rob.getAvenue() !=0) {
@@ -44,7 +44,7 @@ public class A3Q3 {
                 rob.move();
                 rob.turnLeft();
                 rob.move();
-                numberOfMoves= numberOfMoves -2;
+                numberOfMoves= numberOfMoves -1;
             }
 
 

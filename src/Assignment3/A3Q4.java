@@ -69,8 +69,7 @@ public class A3Q4 {
             for(int loop = 3; loop >0; loop--) {
             rob.move(3);
             rob.turnLeft();
-            
-          
+
     }  
             rob.move(3);
 }

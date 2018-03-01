@@ -48,7 +48,7 @@ public class A3Q1 {
             rob.move(3);
             rob.turnLeft();
             rob.move();
-            numberOfMoves = numberOfMoves -1; 
+            numberOfMoves = numberOfMoves -1;
         }
         
         
