@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="adding" min="-2" pref="59" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Subtracting" min="-2" pref="59" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Multiplying" min="-2" pref="61" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Dividing" min="-2" pref="59" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="numberTwo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="resultNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="numberOne" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="outputResult" alignment="0" pref="144" max="32767" attributes="0"/>
+                          <Component id="enterSecondNumber" alignment="0" max="32767" attributes="0"/>
+                          <Component id="enterFirstNumber" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="149" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="numberOne" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="enterFirstNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="numberTwo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="enterSecondNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="resultNumber" min="-2" max="-2" attributes="0"/>
+                  <Component id="outputResult" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="78" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="adding" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Subtracting" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Multiplying" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Dividing" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="adding">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addingActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Subtracting">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sub"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="Multiplying">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mul"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="Dividing">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Div"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="numberOne">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="First Number"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="numberTwo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Second Number"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="resultNumber">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Result"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="enterFirstNumber">
+    </Component>
+    <Component class="javax.swing.JTextField" name="enterSecondNumber">
+    </Component>
+    <Component class="javax.swing.JTextField" name="outputResult">
+    </Component>
+  </SubComponents>
+</Form>
