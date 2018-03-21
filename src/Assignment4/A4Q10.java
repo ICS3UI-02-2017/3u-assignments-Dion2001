@@ -92,7 +92,9 @@ public class A4Q10 extends javax.swing.JFrame {
     private void f2CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f2CActionPerformed
         String fConvert= enterF.getText();
         double fcon= Double.parseDouble(fConvert);
-        double result = fcon - 32 / 1.8; 
+        String cProduct = enterC.getText();
+        double result = fcon - 32 / 1.8;
+        
     }//GEN-LAST:event_f2CActionPerformed
 
     /**
