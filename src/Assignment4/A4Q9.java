@@ -47,16 +47,37 @@ public class A4Q9 extends javax.swing.JFrame {
         });
 
         Subtracting.setText("Sub");
+        Subtracting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubtractingActionPerformed(evt);
+            }
+        });
 
         Multiplying.setText("Mul");
+        Multiplying.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MultiplyingActionPerformed(evt);
+            }
+        });
 
         Dividing.setText("Div");
+        Dividing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DividingActionPerformed(evt);
+            }
+        });
 
         numberOne.setText("First Number");
 
         numberTwo.setText("Second Number");
 
         resultNumber.setText("Result");
+
+        outputResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outputResultActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,8 +135,45 @@ public class A4Q9 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addingActionPerformed
-        // TODO add your handling code here:
+      // ask user for two numbers and add them
+        String addBoxOne = enterFirstNumber.getText();
+        int addingOne = Integer.parseInt(addBoxOne);
+        String addBoxTwo = enterSecondNumber.getText();
+        int addingTwo = Integer.parseInt(addBoxTwo);
+        int result= addingOne + addingTwo;
+        outputResult.setText("" +result);
     }//GEN-LAST:event_addingActionPerformed
+
+    private void outputResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputResultActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_outputResultActionPerformed
+
+    private void SubtractingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubtractingActionPerformed
+String subBoxOne = enterFirstNumber.getText();
+// ask user for two numbers and subtract them
+        int subOne = Integer.parseInt(subBoxOne);
+        String subBoxTwo = enterSecondNumber.getText();
+        int subTwo = Integer.parseInt(subBoxTwo);
+        int result= subOne - subTwo;
+        outputResult.setText("" +result);    }//GEN-LAST:event_SubtractingActionPerformed
+
+    private void MultiplyingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MultiplyingActionPerformed
+        String mulBoxOne = enterFirstNumber.getText();
+        int mulOne = Integer.parseInt(mulBoxOne);
+        String mulBoxTwo = enterSecondNumber.getText();
+        int addingTwo = Integer.parseInt(mulBoxTwo);
+        int result= mulOne * addingTwo;
+        outputResult.setText("" +result);
+    }//GEN-LAST:event_MultiplyingActionPerformed
+
+    private void DividingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DividingActionPerformed
+      String divBoxOne = enterFirstNumber.getText();
+        double divOne = Integer.parseInt(divBoxOne);
+        String divBoxTwo = enterSecondNumber.getText();
+        double divTwo = Integer.parseInt(divBoxTwo);
+        double result= divOne / divTwo;
+        outputResult.setText("" +result);
+    }//GEN-LAST:event_DividingActionPerformed
 
     /**
      * @param args the command line arguments
