@@ -39,6 +39,12 @@ public class A4Q10 extends javax.swing.JFrame {
 
         jLabel2.setText("Degrees Celsius");
 
+        enterC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterCActionPerformed(evt);
+            }
+        });
+
         f2C.setText("F -> C");
         f2C.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,12 +96,23 @@ public class A4Q10 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void f2CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f2CActionPerformed
+       // convert Fahrenheit to Celcius
         String fConvert= enterF.getText();
         double fcon= Double.parseDouble(fConvert);
         String cProduct = enterC.getText();
-        double result = fcon - 32 / 1.8;
+        double result = (fcon - 32) / 1.8;
+        enterC.setText("" + result);
         
     }//GEN-LAST:event_f2CActionPerformed
+
+    private void enterCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterCActionPerformed
+       // convert Celcius to Fahrenheit
+        String cConvert= enterC.getText();
+        double fcon= Double.parseDouble(cConvert);
+        String fProduct = enterF.getText();
+        double result = fcon * 1.8 +32;
+        enterF.setText("" + result);
+    }//GEN-LAST:event_enterCActionPerformed
 
     /**
      * @param args the command line arguments
