@@ -28,20 +28,23 @@ public class A5Q1 {
 
             // Sanitize word to lowercase
             oldWord = oldWord.toLowerCase();
-            
+
             //look for vowels in word
-             int length = oldWord.length();
+            int length = oldWord.length();
 
             // Reconize all vowels
-             for (int i = 0; i < length; i++) {
-            if (oldWord.charAt(i) == 'a' || oldWord.charAt(i) == 'e' || oldWord.charAt(i) == 'i' || oldWord.charAt(i) == 'o' || oldWord.charAt(i) == 'u') {
-                
-            // place "ub" after the first vowel
-                String firstV = oldWord.substring(0, i);
-                String endW = oldWord.substring(i, 0);
-                System.out.println(firstV+ "ub" + endW);
+            for (int i = 0; i < length; i++) {
+                if (oldWord.charAt(i) == 'a' || oldWord.charAt(i) == 'e' || oldWord.charAt(i) == 'i' || oldWord.charAt(i) == 'o' || oldWord.charAt(i) == 'u') {
+
+                    // place "ub" after the first vowel
+                    String firstV = oldWord.substring(0, i);
+                    String endW = oldWord.substring(i);
+                    System.out.println(firstV + "ub" + endW);
+                    
+                    //do for multiple vowels
+                    
+                }
             }
         }
     }
-}
 }
