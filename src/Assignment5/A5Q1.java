@@ -37,19 +37,22 @@ public class A5Q1 {
             for (int i = 0; i < length; i++) {
                 if (oldWord.charAt(i) == 'a' || oldWord.charAt(i) == 'e' || oldWord.charAt(i) == 'i' || oldWord.charAt(i) == 'o' || oldWord.charAt(i) == 'u') {
                     if (oldWord.charAt(i + 1) == 'a' || oldWord.charAt(i + 1) == 'e' || oldWord.charAt(i + 1) == 'i' || oldWord.charAt(i + 1) == 'o' || oldWord.charAt(i + 1) == 'u') {
+                        ub = ub + "ub" + oldWord.charAt(i) + oldWord.charAt(i + 1);
                         i++;
-                        // place "ub" after the first vowel
-                        String firstV = oldWord.substring(0, i);
-                        String endW = oldWord.substring(i);
-                        System.out.println(firstV + "ub" + endW);
+
 
                     } else {
+                        ub = ub + "ub" + oldWord.charAt(i);
                     }
 
 
+                } else {
+                    ub = ub + oldWord.charAt(i);
                 }
 
             }
+            // place "ub" after the first vowel
+            System.out.println(ub);
         }
     }
 }
