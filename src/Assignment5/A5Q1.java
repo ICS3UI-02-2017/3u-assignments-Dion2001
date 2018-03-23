@@ -32,18 +32,23 @@ public class A5Q1 {
             //look for vowels in word
             int length = oldWord.length();
 
+            String ub = "";
             // Reconize all vowels
             for (int i = 0; i < length; i++) {
                 if (oldWord.charAt(i) == 'a' || oldWord.charAt(i) == 'e' || oldWord.charAt(i) == 'i' || oldWord.charAt(i) == 'o' || oldWord.charAt(i) == 'u') {
+                    if (oldWord.charAt(i + 1) == 'a' || oldWord.charAt(i + 1) == 'e' || oldWord.charAt(i + 1) == 'i' || oldWord.charAt(i + 1) == 'o' || oldWord.charAt(i + 1) == 'u') {
+                        i++;
+                        // place "ub" after the first vowel
+                        String firstV = oldWord.substring(0, i);
+                        String endW = oldWord.substring(i);
+                        System.out.println(firstV + "ub" + endW);
 
-                    // place "ub" after the first vowel
-                    String firstV = oldWord.substring(0, i);
-                    String endW = oldWord.substring(i);
-                    System.out.println(firstV + "ub" + endW);
-                    
-                    //do for multiple vowels
-                    
+                    } else {
+                    }
+
+
                 }
+
             }
         }
     }
