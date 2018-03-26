@@ -10,16 +10,13 @@ import java.util.Scanner;
  *
  * @author salod8556
  */
-public class A5Q1 {
+public class A5Q1_brainstorm {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
-        // Make sure the program doesn't stop
-
         while (true) {
 
             // ask for word to translate
@@ -32,28 +29,26 @@ public class A5Q1 {
             //look for vowels in word
             int length = oldWord.length();
 
-            oldWord = oldWord + " ";
             String ub = "";
             // Reconize all vowels
             for (int i = 0; i < length; i++) {
-                if (oldWord.charAt(i) == 'a' || oldWord.charAt(i) == 'e' || oldWord.charAt(i) == 'i' || oldWord.charAt(i) == 'o' || oldWord.charAt(i) == 'u') {
-                    if (oldWord.charAt(i + 1) == 'a' || oldWord.charAt(i + 1) == 'e' || oldWord.charAt(i + 1) == 'i' || oldWord.charAt(i + 1) == 'o' || oldWord.charAt(i + 1) == 'u') {
-                        ub = ub + "ub" + oldWord.charAt(i) + oldWord.charAt(i + 1);
-                        i++;
-
-
-                    } else {
-                        ub = ub + "ub" + oldWord.charAt(i);
-                    }
-
-
-                } else {
-                    ub = ub + oldWord.charAt(i);
-                }
+                char[] charArray = {'a', 'e', 'i', 'o', 'u'};
+//                if (oldWord.charAt(i) == 'a' || oldWord.charAt(i) == 'e' || oldWord.charAt(i) == 'i' || oldWord.charAt(i) == 'o' || oldWord.charAt(i) == 'u') {
+//                    if (oldWord.charAt(i + 1) == 'a' || oldWord.charAt(i + 1) == 'e' || oldWord.charAt(i + 1) == 'i' || oldWord.charAt(i + 1) == 'o' || oldWord.charAt(i + 1) == 'u') {
+                ub = ub + "ub" + oldWord.charAt(i) + oldWord.charAt(i + 1);
+                i++;
+                ub = ub + "ub" + oldWord.charAt(i);
+                ub = ub + oldWord.charAt(i);
 
             }
+
             // place "ub" after the first vowel
             System.out.println(ub);
         }
+
+
     }
 }
+
+    
+
