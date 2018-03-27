@@ -31,29 +31,29 @@ public class A5Q1 {
 
             //look for vowels in word
             int length = oldWord.length();
-
             oldWord = oldWord + " ";
             String ub = "";
             // Reconize all vowels
+            
             for (int i = 0; i < length; i++) {
                 if (oldWord.charAt(i) == 'a' || oldWord.charAt(i) == 'e' || oldWord.charAt(i) == 'i' || oldWord.charAt(i) == 'o' || oldWord.charAt(i) == 'u') {
                     if (oldWord.charAt(i + 1) == 'a' || oldWord.charAt(i + 1) == 'e' || oldWord.charAt(i + 1) == 'i' || oldWord.charAt(i + 1) == 'o' || oldWord.charAt(i + 1) == 'u') {
+                        // add ub when word has 1 vowel in series
                         ub = ub + "ub" + oldWord.charAt(i) + oldWord.charAt(i + 1);
                         i++;
-
-
+           
                     } else {
+                     // add ub after 2 vowels in series 
                         ub = ub + "ub" + oldWord.charAt(i);
                     }
-
-
                 } else {
+                    // add letter into string if it a consonants 
                     ub = ub + oldWord.charAt(i);
                 }
-
             }
             // place "ub" after the first vowel
             System.out.println(ub);
         }
     }
+    
 }
