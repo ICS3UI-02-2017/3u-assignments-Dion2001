@@ -31,19 +31,23 @@ public class A5Q1 {
 
             //look for vowels in word
             int length = oldWord.length();
-            oldWord = oldWord + " ";
+
             String ub = "";
-            // Reconize all vowels
-            
-            for (int i = 0; i < length; i++) {
+            int i = 0;
+
+            // If letters starts with vowel, put ub before it
+            if (oldWord.startsWith("a") || oldWord.startsWith("e") || oldWord.startsWith("i") || oldWord.startsWith("o") || oldWord.startsWith("u")) {
+                ub = "ub" + oldWord.charAt(i) + ub;
+                i += 1;
+            }
+            // recognized all vowels
+            for (i = i; i < length; i++) {
                 if (oldWord.charAt(i) == 'a' || oldWord.charAt(i) == 'e' || oldWord.charAt(i) == 'i' || oldWord.charAt(i) == 'o' || oldWord.charAt(i) == 'u') {
-                    if (oldWord.charAt(i + 1) == 'a' || oldWord.charAt(i + 1) == 'e' || oldWord.charAt(i + 1) == 'i' || oldWord.charAt(i + 1) == 'o' || oldWord.charAt(i + 1) == 'u') {
-                        // add ub when word has 1 vowel in series
-                        ub = ub + "ub" + oldWord.charAt(i) + oldWord.charAt(i + 1);
-                        i++;
-           
+                    if (oldWord.charAt(i - 1) == 'a' || oldWord.charAt(i - 1) == 'e' || oldWord.charAt(i - 1) == 'i' || oldWord.charAt(i - 1) == 'o' || oldWord.charAt(i - 1) == 'u') {
+                     // If the letter behind the vowel is a vowel, leave it as it is
+                        ub = ub + oldWord.charAt(i);
                     } else {
-                     // add ub after 2 vowels in series 
+                        // add ub before all vowels
                         ub = ub + "ub" + oldWord.charAt(i);
                     }
                 } else {
@@ -53,7 +57,7 @@ public class A5Q1 {
             }
             // place "ub" after the first vowel
             System.out.println(ub);
+            break;
         }
     }
-    
 }
