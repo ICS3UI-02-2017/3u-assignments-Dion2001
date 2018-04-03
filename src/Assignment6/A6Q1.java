@@ -31,9 +31,10 @@ public class A6Q1 {
         for(int i= 0; i < marks.length; i++ ){
             int sMarks = input.nextInt();
             sum = sum + sMarks + marks [i];
-            sum  = sum / students;
-        }
             
+        }
+            double average= sum / students;
+            System.out.println("The average is " + average + "%");
       
     }
 
