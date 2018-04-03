@@ -24,13 +24,13 @@ public class A6Q1 {
         
         // Collect their marks
         int sum = 0;
-        System.out.println("What are the susdents marks: ");
-        int sMarks = input.nextInt();
+        System.out.println("What are the students marks: ");
+       
         
         int[] marks = new int[students];
         for(int i= 0; i < marks.length; i++ ){
-            sum = sum + marks[i];
-            
+            int sMarks = input.nextInt();
+            sum = sum + sMarks + marks [i];
             sum  = sum / students;
         }
             
