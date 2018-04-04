@@ -19,22 +19,24 @@ public class A6Q1 {
         Scanner input= new Scanner(System.in);
         
         // Ask how many students are in the class
-        int students = input.nextInt();
+        
         System.out.println("How many students are in the class: ");
-        
-        // Collect their marks
-        int sum = 0;
-        System.out.println("What are the students marks: ");
-       
-        
+        int students = input.nextInt();
+        // Collect their marks and add them so the average can be used 
         int[] marks = new int[students];
+        double sum = 0;
+        System.out.println("What are the students marks: ");
         for(int i= 0; i < marks.length; i++ ){
-            int sMarks = input.nextInt();
+            double sMarks = input.nextDouble();
             sum = sum + sMarks + marks [i];
-            
         }
+        // round to the the 2 next decible places and give average
             double average= sum / students;
-            System.out.println("The average is " + average + "%");
+            double avg= Math.round(average*100)/100.0;
+            System.out.println("The average is " + avg + "%");
+            
+            
+           
       
     }
 
