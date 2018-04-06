@@ -23,17 +23,18 @@ public class A6Q4 {
 
         // sort the marks 
         int[] marks = new int[10];
-        for (int i = 0; i < marks.length; i++) {
-            int sMarks = input.nextInt();
-            int d = marks[i];
-            marks[i] = d;
-        }
-        for (int i = 0; i < marks.length; i++) {
-            if (marks[i] < marks[i++]) {
-                System.out.println("The marks from lowest to highest are:" + marks[i]);
+        for (int i = 0; i < marks.length - 1; i++) {
+
+            for (int j = 0; j < marks.length; j++) {
+
+                if (marks[i] > marks[j]) {
+                    int numD = marks[i];
+                    marks[i] = marks[j];
+                    marks[j] = numD;
+                }
+
             }
-
+            System.out.println("The marks in ascending order are:");
         }
-
     }
 }
