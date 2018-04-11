@@ -22,19 +22,21 @@ public class A6Q4 {
         System.out.println("Enter 10 marks: ");
 
         // sort the marks 
-        int[] marks = new int[10];
+        int[] marks = new int[11];
         for (int i = 0; i < marks.length - 1; i++) {
-
+        int numbers = input.nextInt();
+        marks [i] = numbers;
             for (int j = 0; j < marks.length; j++) {
-
                 if (marks[i] > marks[j]) {
                     int numD = marks[i];
                     marks[i] = marks[j];
                     marks[j] = numD;
                 }
-
             }
-            System.out.println("The marks in ascending order are:");
         }
+        int[] arr = marks;
+        System.out.println("The marks in ascending order are: ");
+        
+     
     }
 }
