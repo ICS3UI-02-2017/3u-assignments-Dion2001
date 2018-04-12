@@ -5,7 +5,7 @@
 package Assignment6;
 
 import java.util.Scanner;
-
+import java.util.Arrays;
 /**
  *
  * @author salod8556
@@ -22,11 +22,15 @@ public class A6Q4 {
         System.out.println("Enter 10 marks: ");
 
         // sort the marks 
-        int[] marks = new int[11];
-        for (int i = 0; i < marks.length - 1; i++) {
-        int numbers = input.nextInt();
+        int[] marks = new int[10];
+        for (int i = 0; i < marks.length; i++) {
+           int numbers = input.nextInt();
         marks [i] = numbers;
-            for (int j = 0; j < marks.length; j++) {
+            
+        }
+        for (int i = 0; i < marks.length - 1; i++) {
+        
+            for (int j = i+1; j < marks.length; j++) {
                 if (marks[i] > marks[j]) {
                     int numD = marks[i];
                     marks[i] = marks[j];
@@ -35,7 +39,7 @@ public class A6Q4 {
             }
         }
         int[] arr = marks;
-        System.out.println("The marks in ascending order are: ");
+        System.out.println("The marks in dascending order are: " + Arrays.toString(marks));
         
      
     }
