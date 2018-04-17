@@ -29,17 +29,21 @@ public class A6Q3 {
             sort[i] = numbers;
         }
         // make program say them in ascending order
-        for (int i = 0; i < sort.length; i++) {
-            if (sort[i] < sort[i + 1]) {
-                System.out.println("The integers in ascending order are:" + sort[i] + " " + sort[ i + 1]);
+        if (sort[1] < sort[0]) {
+           int num1 = sort[0];
+           sort[0]= sort[1];
+           sort[1] = num1;
+           
+            
+                System.out.println("The integers in ascending order are:" + sort[0] + " " + sort[1]);
             } else {
-                System.out.println("The integers in ascending order are:" + sort[i + 1] + " " + sort[i]);
+                System.out.println("The integers in ascending order are:" + sort[0] + " " + sort[1]);
             }
-            break;
+        
                     
 
 
 
         }
     }
-}
+

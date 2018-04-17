@@ -21,15 +21,15 @@ public class A6Q4 {
         // enter the marks 
         System.out.println("Enter 10 marks: ");
 
-        // sort the marks 
+        // Put marks in array 
         int[] marks = new int[10];
         for (int i = 0; i < marks.length; i++) {
            int numbers = input.nextInt();
         marks [i] = numbers;
             
         }
+        // if the first number is greater then the next number, switch them
         for (int i = 0; i < marks.length - 1; i++) {
-        
             for (int j = i+1; j < marks.length; j++) {
                 if (marks[i] > marks[j]) {
                     int numD = marks[i];
@@ -38,8 +38,9 @@ public class A6Q4 {
                 }
             }
         }
-        int[] arr = marks;
-        System.out.println("The marks in dascending order are: " + Arrays.toString(marks));
+        // output marks
+        
+        System.out.println("The marks in ascending order are: " + Arrays.toString(marks));
         
      
     }
