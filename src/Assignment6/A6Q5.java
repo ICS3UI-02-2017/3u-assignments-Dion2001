@@ -45,7 +45,7 @@ public class A6Q5 {
         }
         // output marks
         
-        System.out.println("The marks in dascending order are: " + Arrays.toString(marks));
+        System.out.println("The marks in ascending order are: " + Arrays.toString(marks));
         
           if(numberM % 2 ==1){
               double oddM =numberM /2 + 0.5;
@@ -53,10 +53,13 @@ public class A6Q5 {
               System.out.println("The median is:" + odd);
           }else{
               if(numberM % 2 == 0){
-                  double evenM =numberM /2 + 0.5;
-                  double numA = Math.ceil(evenM);
-                  double numB = Math.floor(evenM);
-                  
+                  double evenM =numberM /2;
+                  double evenM1 = evenM -1;
+                  double num1 = marks[(int)evenM];
+                  double num2 = marks[(int)evenM1];
+                  double tot = num1 + num2;
+                  double avg = tot /2;
+                  System.out.println("The median is:" + avg );
               }
           }
     }
