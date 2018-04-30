@@ -13,15 +13,24 @@ import java.util.Scanner;
 public class A7Q6 {
 
     public static int lastDigit(int number) {
-        int b=0;
+        // find the remainder when divied by 10 and put the remainder at the last digit
+        int b = 0;
         for (int i = 0; i < 10; i++) {
-             if (number % 10 == i) {
-           b = i;
-          return b;
+            if (number % 10 == i) {
+                b = i;
+            }
         }
-        
+        // do the same thing but if the number is negative
+        for (int j = 0; j > -10; j--) {
+            if (number % -10 == j) {
+               b = j * -1;
+               
+
+            }
         }
+        return b;
     }
+
 //        } else if (number % 10 == 1) {
 //            System.out.println("The last digit of your number is 1");
 //        } else if (number % 10 == 2) {
@@ -40,20 +49,14 @@ public class A7Q6 {
 //            System.out.println("The last digit of your number is 8");
 //        } else if (number % 10 == 9) {
 //            System.out.println("The last digit of your number is 9");
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("What number would you like to find the last number of?");
-        
-        int digit =lastDigit(input.nextInt());
-
+        // out put the number of the remainder
+        int digit = lastDigit(input.nextInt());
+        System.out.println("The last digit of your number is: " + digit);
     }
-        }
-
-    
-
-    /**
-     * @param args the command line arguments
-     */
-    
 }
+/**
+ * @param args the command line arguments
+ */
