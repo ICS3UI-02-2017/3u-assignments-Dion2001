@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -40,6 +41,8 @@ public class SmileyFace extends JComponent implements ActionListener {
     // YOUR GAME VARIABLES WOULD GO HERE
     Color skin = new Color(237, 213, 37);
     Color mouth = new Color (137, 24, 78);
+    Color tounge = new Color (239, 45, 116);
+    Color hat = new Color (155, 103, 51);
 
 
     // GAME VARIABLES END HERE    
@@ -80,6 +83,8 @@ public class SmileyFace extends JComponent implements ActionListener {
     // NOTE: This is already double buffered!(helps with framerate/speed)
     @Override
     public void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D)g;
+        
         // always clear the screen first!
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
@@ -94,16 +99,23 @@ public class SmileyFace extends JComponent implements ActionListener {
         //create Irises
         g.setColor(Color.BLACK);
         g.fillOval(250, 220, 65, 65);
-        g.fillOval(489, 220, 65, 65);
+        g.fillOval(492, 220, 65, 65);
         // create mouth
         g.setColor(Color.BLACK);
         g.fillArc(164, 140, 420, 400, 180, 180);
         g.setColor(mouth);
         g.fillArc(175, 175, 400, 350, 180, 180);
-        
-        
-		
-		
+        // create tounge
+        g.setColor(tounge);
+        g.fillArc(369, 400, 175, 175, 25, 180);
+        // Rotate the mouth filler
+        g.translate(371, 509);
+        g2d.rotate(Math.toRadians(-26));
+        g.fillArc(0, -12, 175, 50, 180, 180 );
+        g2d.rotate(Math.toRadians(26));
+        g.translate(-371, -509);
+        // create hat
+      
         // GAME DRAWING ENDS HERE
     }
 
