@@ -42,7 +42,15 @@ public class SmileyFace extends JComponent implements ActionListener {
     Color skin = new Color(237, 213, 37);
     Color mouth = new Color (137, 24, 78);
     Color tounge = new Color (239, 45, 116);
-    Color hat = new Color (155, 103, 51);
+    Color eyebrow = new Color (119, 80, 8);
+    
+    int leftEyeX = 250;
+    int leftEyeMovement = -1;
+    int rightEyex= 492;
+    int rightEyeMovement = -1;
+    int rightEyeBrowx= 159;
+    int righteyeBrowMovement = -1;
+    
 
 
     // GAME VARIABLES END HERE    
@@ -92,14 +100,14 @@ public class SmileyFace extends JComponent implements ActionListener {
         //create face
         g.setColor(skin);
         g.fillOval(100, 35, 550, 550);
-        //create eyes 
+        //create eyeballs
         g.setColor(Color.white);
         g.fillArc(185, 200, 140, 175, 0, 180);
         g.fillArc(426, 200, 140, 175, 0, 180);
         //create Irises
         g.setColor(Color.BLACK);
-        g.fillOval(250, 220, 65, 65);
-        g.fillOval(492, 220, 65, 65);
+        g.fillOval(leftEyeX, 220, 65, 65);
+        g.fillOval(rightEyex, 220, 65, 65);
         // create mouth
         g.setColor(Color.BLACK);
         g.fillArc(164, 140, 420, 400, 180, 180);
@@ -114,8 +122,10 @@ public class SmileyFace extends JComponent implements ActionListener {
         g.fillArc(0, -12, 175, 50, 180, 180 );
         g2d.rotate(Math.toRadians(26));
         g.translate(-371, -509);
-        // create hat
-      
+        // create eyebrows
+        g.setColor(eyebrow);
+        g.fillRoundRect(183, rightEyeBrowx, 125, 30, 25, 25);
+        g.fillRoundRect(430, 159, 125, 30, 25, 25);
         // GAME DRAWING ENDS HERE
     }
 
@@ -129,9 +139,33 @@ public class SmileyFace extends JComponent implements ActionListener {
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
+        leftEyeX = leftEyeX + leftEyeMovement;
+       
+              
         
-    }
+        if(leftEyeX < 200){
+            leftEyeMovement = 1;
+        }
+        if(leftEyeX > 250){   
+            leftEyeMovement = -1;
+            
+}  
+        rightEyex = rightEyex + rightEyeMovement;
+        if(rightEyex < 442){
+            rightEyeMovement = 1; 
+        }
+        if(rightEyex > 492){
+            rightEyeMovement = -1;
+        }
+        rightEyeBrowx = rightEyeBrowx +  righteyeBrowMovement;
+        if(rightEyeBrowx < 100){
+            righteyeBrowMovement = 1;
+        }
+        
+}
 
+
+    
     // Used to implement any of the Mouse Actions
     private class Mouse extends MouseAdapter {
 
