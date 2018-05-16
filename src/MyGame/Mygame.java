@@ -24,30 +24,28 @@ public class Mygame extends JComponent implements ActionListener {
     // Height and Width of our game
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
-
     //Title of the window
     String title = "My Game";
-
     // sets the framerate and delay for our game
     // this calculates the number of milliseconds per frame
     // you just need to select an approproate framerate
     int desiredFPS = 60;
     int desiredTime = Math.round((1000 / desiredFPS));
-    
     // timer used to run the game loop
     // this is what keeps our time running smoothly :)
     Timer gameTimer;
-
     // YOUR GAME VARIABLES WOULD GO HERE
-    Color backround = new Color(140, 199, 247);
-
+    //Background Color
+    Color background = new Color(140, 199, 247);
+    // Varible for moving charater
+    boolean moveleft = false;
+    boolean moveright = false;
+    int blockX = 0;
 
     // GAME VARIABLES END HERE    
-
-    
     // Constructor to create the Frame and place the panel in
     // You will learn more about this in Grade 12 :)
-    public Mygame(){
+    public Mygame() {
         // creates a windows to show my game
         JFrame frame = new JFrame(title);
 
@@ -69,8 +67,8 @@ public class Mygame extends JComponent implements ActionListener {
         this.addMouseMotionListener(m);
         this.addMouseWheelListener(m);
         this.addMouseListener(m);
-        
-        gameTimer = new Timer(desiredTime,this);
+
+        gameTimer = new Timer(desiredTime, this);
         gameTimer.setRepeats(true);
         gameTimer.start();
     }
@@ -85,8 +83,11 @@ public class Mygame extends JComponent implements ActionListener {
 
         // GAME DRAWING GOES HERE
         //Back round
-        g.setColor(backround);
+        g.setColor(background);
         g.fillRect(0, 0, WIDTH, HEIGHT);
+        //character
+        g.setColor(Color.ORANGE);
+        g.fillRect(blockX, 50, 50, 50);
         // Floors
         g.setColor(Color.WHITE);
         //First row
@@ -97,11 +98,11 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillRect(500, 200, 800, 25);
         // Third Row
         g.fillRect(0, 300, 50, 25);
-        g.fillRect(ERROR, ERROR, ERROR, ERROR);
-       
-        
-		
-		
+
+
+
+
+
         // GAME DRAWING ENDS HERE
     }
 
@@ -109,13 +110,33 @@ public class Mygame extends JComponent implements ActionListener {
     // This is run before the game loop begins!
     public void preSetup() {
         // Any of your pre setup before the loop starts should go here
-
     }
 
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
+
+        // when charX leaves the screen on right
+        if (blockX + 50 > WIDTH) {
+            blockX = WIDTH - 50;
+        }else{
+        }if(blockX < 0){
+                blockX =  0;
+            
+            }
         
+        // move left or right
+        if (moveleft) {
+            blockX = blockX - 2;
+        } else {
+            if (moveright) {
+                blockX = blockX + 2;
+            }
+        }
+        // Collison detection
+       if(!()){
+            
+       }
     }
 
     // Used to implement any of the Mouse Actions
@@ -124,25 +145,21 @@ public class Mygame extends JComponent implements ActionListener {
         // if a mouse button has been pressed down
         @Override
         public void mousePressed(MouseEvent e) {
-
         }
 
         // if a mouse button has been released
         @Override
         public void mouseReleased(MouseEvent e) {
-
         }
 
         // if the scroll wheel has been moved
         @Override
         public void mouseWheelMoved(MouseWheelEvent e) {
-
         }
 
         // if the mouse has moved positions
         @Override
         public void mouseMoved(MouseEvent e) {
-
         }
     }
 
@@ -152,14 +169,32 @@ public class Mygame extends JComponent implements ActionListener {
         // if a key has been pressed down
         @Override
         public void keyPressed(KeyEvent e) {
-
+            // get the key code
+            int keycode = e.getKeyCode();
+            // which key
+            if (keycode == KeyEvent.VK_A) {
+                moveleft = true;
+            }
+                if (keycode == KeyEvent.VK_D) {
+                    moveright = true;
+                }
+            
         }
 
         // if a key has been released
         @Override
         public void keyReleased(KeyEvent e) {
-
-        }
+            // get the key code
+            int keycode = e.getKeyCode();
+            // which key
+            if (keycode == KeyEvent.VK_A) {
+                moveleft = false;
+            }
+                if (keycode == KeyEvent.VK_D) {
+                    moveright = false;
+                }
+            }
+        
     }
 
     @Override
@@ -177,4 +212,3 @@ public class Mygame extends JComponent implements ActionListener {
         Mygame game = new Mygame();
     }
 }
-
