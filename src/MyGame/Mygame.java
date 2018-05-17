@@ -40,7 +40,25 @@ public class Mygame extends JComponent implements ActionListener {
     // Varible for moving charater
     boolean moveleft = false;
     boolean moveright = false;
+    boolean jump = false;
+    // Variables for player 
     int blockX = 0;
+    int blockY =50;
+    int blockW = 50;
+    int blockH = 50;
+    // Varibles for the first row first piece
+    int firstrowY = 100;
+    int firstrowH = 25;
+    int firstrowX = 0;
+    int firstrowW = 600;
+    //varibles for the first row second piece
+    int firstrowX2 = 700;
+    int firstrowY2 = 100;
+    int firstrowW2 = 100;
+    int firstrowH2 = 25;
+    //Gravity 
+    int changeY = 0;
+    int gravity = 1;
 
     // GAME VARIABLES END HERE    
     // Constructor to create the Frame and place the panel in
@@ -87,12 +105,12 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillRect(0, 0, WIDTH, HEIGHT);
         //character
         g.setColor(Color.ORANGE);
-        g.fillRect(blockX, 50, 50, 50);
+        g.fillRect(blockX, blockY, blockW, blockH);
         // Floors
         g.setColor(Color.WHITE);
         //First row
-        g.fillRect(0, 100, 600, 25);
-        g.fillRect(700, 100, 100, 25);
+        g.fillRect(firstrowX, firstrowY, firstrowW, firstrowH);
+        g.fillRect(firstrowX2, firstrowY2, firstrowW2, firstrowH2);
         // Second row
         g.fillRect(0, 200, 400, 25);
         g.fillRect(500, 200, 800, 25);
@@ -132,10 +150,25 @@ public class Mygame extends JComponent implements ActionListener {
             if (moveright) {
                 blockX = blockX + 2;
             }
+            if(jump){
+                blockY = blockY +2;
+            }
         }
+        
+        // gravity on player
+        changeY = changeY + gravity;
+        blockY = blockY + changeY;
+        
         // Collison detection
-       if(!()){
-            
+       if(!( blockY + blockH < firstrowY || blockY > firstrowY + firstrowH || 
+               blockX + blockW < firstrowX || blockX > firstrowX + firstrowW )){
+           changeY = 0;
+            blockY = firstrowY - blockH;
+       }
+       if(!( blockY + blockH < firstrowY2 || blockY > firstrowY2 + firstrowH2 || 
+               blockX + blockW < firstrowX2 || blockX > firstrowX2 + firstrowW2 )){
+           changeY = 0;
+            blockY = firstrowY2 - blockH;
        }
     }
 
@@ -178,7 +211,9 @@ public class Mygame extends JComponent implements ActionListener {
                 if (keycode == KeyEvent.VK_D) {
                     moveright = true;
                 }
-            
+            if(keycode == KeyEvent.VK_W){
+                jump = true;
+            }
         }
 
         // if a key has been released
@@ -193,8 +228,10 @@ public class Mygame extends JComponent implements ActionListener {
                 if (keycode == KeyEvent.VK_D) {
                     moveright = false;
                 }
+                 if(keycode == KeyEvent.VK_W){
+                jump = false;
             }
-        
+        }
     }
 
     @Override
