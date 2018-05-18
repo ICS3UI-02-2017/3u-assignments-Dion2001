@@ -129,7 +129,16 @@ public class Mygame extends JComponent implements ActionListener {
     public void preSetup() {
         // Any of your pre setup before the loop starts should go here
     }
+    
+    public void collisionDetection(int x, int y, int w, int h){
+        if(!( blockY + blockH < y || blockY > y + h || 
+               blockX + blockW < x || blockX > x + w )){
+           changeY = 0;
+            blockY = y - blockH;
+    }
+    }
 
+    
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
@@ -151,7 +160,7 @@ public class Mygame extends JComponent implements ActionListener {
                 blockX = blockX + 2;
             }
             if(jump){
-                blockY = blockY +2;
+                blockY = blockY - 15;
             }
         }
         
@@ -160,17 +169,11 @@ public class Mygame extends JComponent implements ActionListener {
         blockY = blockY + changeY;
         
         // Collison detection
-       if(!( blockY + blockH < firstrowY || blockY > firstrowY + firstrowH || 
-               blockX + blockW < firstrowX || blockX > firstrowX + firstrowW )){
-           changeY = 0;
-            blockY = firstrowY - blockH;
+       collisionDetection(firstrowX, firstrowY, firstrowW, firstrowH);
+         
+       
        }
-       if(!( blockY + blockH < firstrowY2 || blockY > firstrowY2 + firstrowH2 || 
-               blockX + blockW < firstrowX2 || blockX > firstrowX2 + firstrowW2 )){
-           changeY = 0;
-            blockY = firstrowY2 - blockH;
-       }
-    }
+    
 
     // Used to implement any of the Mouse Actions
     private class Mouse extends MouseAdapter {
@@ -210,10 +213,12 @@ public class Mygame extends JComponent implements ActionListener {
             }
                 if (keycode == KeyEvent.VK_D) {
                     moveright = true;
-                }
-            if(keycode == KeyEvent.VK_W){
+                } 
+                    if(keycode == KeyEvent.VK_W){
                 jump = true;
-            }
+                }
+            
+            
         }
 
         // if a key has been released
@@ -228,9 +233,12 @@ public class Mygame extends JComponent implements ActionListener {
                 if (keycode == KeyEvent.VK_D) {
                     moveright = false;
                 }
-                 if(keycode == KeyEvent.VK_W){
+                    if(keycode == KeyEvent.VK_W){
                 jump = false;
-            }
+                    
+                }
+                 
+            
         }
     }
 
