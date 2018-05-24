@@ -58,17 +58,41 @@ public class Mygame extends JComponent implements ActionListener {
     int firstrowH2 = 25;
     // varibles for the second row on left
     int secondrowX =0;
-    int secondrowY =200;
+    int secondrowY =250;
     int secondrowW = 400;
     int secondrowH = 25;
     // variables for second row on right
     int secondrowX2 = 500;
-    int secondrowY2 = 200;
+    int secondrowY2 = 250;
     int secondrowW2 = 800;
     int secondrowH2 = 25;
+    // varibles for third row on left
+    int thirdrowX = 0;
+    int thirdrowY = 400;
+    int thirdrowW = 50;
+    int thirdrowH =25;
+    // varibles for third row on right
+    int thirdrowX2 = 150;
+    int thirdrowY2 = 400;
+    int thirdrowW2 = 650;
+    int thirdrowH2 = 25;
+    // variables for fourth row on left
+    int fourthrowX = 0;
+    int fourthrowY = 550;
+    int fourthrowW = 300;
+    int fourthrowH = 25;
+    // variables for fourth row on right
+    int fourthrowX2 = 400;
+    int fourthrowY2 = 550;
+    int fourthrowW2 = 400;
+    int fourthrowH2 = 25;
+    // obsticals
+    int triX1 = 175;
+    int triX2 = 190;
+    int triX3 = 205;
     //Gravity 
     int changeY = 0;
-    int gravity = 1;
+    int gravity = 2;
     // score
     
 
@@ -127,7 +151,16 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillRect(secondrowX, secondrowY, secondrowW, secondrowH);
         g.fillRect(secondrowX2, secondrowY2, secondrowW2, secondrowH2);
         // Third Row
-        g.fillRect(0, 300, 50, 25);
+        g.fillRect(thirdrowX, thirdrowY, thirdrowW, thirdrowH);
+        g.fillRect(thirdrowX2, thirdrowY2, thirdrowW2, thirdrowH2);
+        // fourth Row
+        g.fillRect(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
+        g.fillRect(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
+        // obit
+        g.setColor(Color.RED);
+        int[] triangle1x= {triX1, triX2, triX3};
+        int[] triangle1y ={100, 75, 100};
+        g.fillPolygon(triangle1x, triangle1y, 3);
         // draw score
         
         // GAME DRAWING ENDS HERE
@@ -163,15 +196,15 @@ public class Mygame extends JComponent implements ActionListener {
         
         // move left or right
         if (moveleft) {
-            blockX = blockX - 5;
-        } else {
-            if (moveright) {
-                blockX = blockX +5;
+            blockX = blockX - 7;
+        } else if (moveright) {
+                blockX = blockX +7;
             }
-            if(jump){
+         // jump on command
+         if(jump){
                 blockY = blockY - 15;
             }
-        }
+        
         
         // gravity on player
         changeY = changeY + gravity;
@@ -180,8 +213,12 @@ public class Mygame extends JComponent implements ActionListener {
         // Collison detection
        collisionDetection(firstrowX, firstrowY, firstrowW, firstrowH);
        collisionDetection(firstrowX2, firstrowY2, firstrowW2, firstrowH2);  
-        collisionDetection(secondrowX, secondrowY, secondrowW, secondrowH);
-        collisionDetection(secondrowX2, secondrowY2, secondrowW2, secondrowH2);
+       collisionDetection(secondrowX, secondrowY, secondrowW, secondrowH);
+       collisionDetection(secondrowX2, secondrowY2, secondrowW2, secondrowH2);
+       collisionDetection(thirdrowX, thirdrowY, thirdrowW, thirdrowH);
+       collisionDetection(thirdrowX2, thirdrowY2, thirdrowW2, thirdrowH2);
+       collisionDetection(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
+       collisionDetection(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2); 
        }
     
 
