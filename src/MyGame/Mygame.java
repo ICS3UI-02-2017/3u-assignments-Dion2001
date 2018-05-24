@@ -196,9 +196,9 @@ public class Mygame extends JComponent implements ActionListener {
         
         // move left or right
         if (moveleft) {
-            blockX = blockX - 7;
+            blockX = blockX - 5;
         } else if (moveright) {
-                blockX = blockX +7;
+                blockX = blockX +5;
             }
          // jump on command
          if(jump){
