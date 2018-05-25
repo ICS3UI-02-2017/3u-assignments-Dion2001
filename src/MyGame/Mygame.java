@@ -239,10 +239,10 @@ public class Mygame extends JComponent implements ActionListener {
        }
     
     public void restartgame(){
-        if(blockX == collisionDetectionTriangle()){
+      
             
         }
-    }
+    
             
     
     // Used to implement any of the Mouse Actions
