@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -86,14 +87,17 @@ public class Mygame extends JComponent implements ActionListener {
     int fourthrowY2 = 550;
     int fourthrowW2 = 400;
     int fourthrowH2 = 25;
-    // obsticals
+    // obsticals and the box it goes over for collision 
     int triX1 = 175;
-    int triX2 = 190;
-    int triX3 = 205;
+    int triX2 = 180;
+    int triX3 = 185;
+    int boxX= 175;
+    Rectangle tri1 = new Rectangle(175, 82, 10, 20);
     //Gravity 
     int changeY = 0;
     int gravity = 2;
     // score
+    
     
 
     // GAME VARIABLES END HERE    
@@ -157,10 +161,17 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillRect(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
         g.fillRect(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
         // obit
+        
+        
+        
+        
         g.setColor(Color.RED);
         int[] triangle1x= {triX1, triX2, triX3};
-        int[] triangle1y ={100, 75, 100};
+        int[] triangle1y ={100, 80, 100};
         g.fillPolygon(triangle1x, triangle1y, 3);
+        
+        
+        
         // draw score
         
         // GAME DRAWING ENDS HERE
@@ -179,13 +190,18 @@ public class Mygame extends JComponent implements ActionListener {
             blockY = y - blockH;
     }
     }
-
-    
+    public void collisionDetectionTriangle(int x, int y, int w, int h ){
+         if(!( blockY + blockH < y || blockY > y + h || 
+               blockX + blockW < x || blockX > x + w )){
+           changeY = 0;
+            blockY = y - blockH;
+    }
+    }
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
 
-        // when charX leaves the screen on right
+        // stop block from leaveing the screen 
         if (blockX + 50 > WIDTH) {
             blockX = WIDTH - 50;
         }else{
@@ -219,9 +235,16 @@ public class Mygame extends JComponent implements ActionListener {
        collisionDetection(thirdrowX2, thirdrowY2, thirdrowW2, thirdrowH2);
        collisionDetection(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
        collisionDetection(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2); 
+       collisionDetectionTriangle(tri1.x,tri1.y, tri1.width, tri1.height );
        }
     
-
+    public void restartgame(){
+        if(blockX == collisionDetectionTriangle()){
+            
+        }
+    }
+            
+    
     // Used to implement any of the Mouse Actions
     private class Mouse extends MouseAdapter {
 
