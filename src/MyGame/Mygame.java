@@ -92,7 +92,12 @@ public class Mygame extends JComponent implements ActionListener {
     int triX2 = 180;
     int triX3 = 185;
     int boxX= 175;
-    Rectangle tri1 = new Rectangle(175, 82, 10, 20);
+    Rectangle tri1 = new Rectangle(175, 82, 10, 2);
+    
+    
+    Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
+    
+    
     //Gravity 
     int changeY = 0;
     int gravity = 2;
@@ -145,7 +150,7 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillRect(0, 0, WIDTH, HEIGHT);
         //character
         g.setColor(Color.ORANGE);
-        g.fillRect(blockX, blockY, blockW, blockH);
+        g.fillRect(block.x, block.y, block.width, block.height);
         // Floors
         g.setColor(Color.WHITE);
         //First row
@@ -183,48 +188,49 @@ public class Mygame extends JComponent implements ActionListener {
         // Any of your pre setup before the loop starts should go here
     }
     
-    public void collisionDetection(int x, int y, int w, int h){
-        if(!( blockY + blockH < y || blockY > y + h || 
-               blockX + blockW < x || blockX > x + w )){
-           changeY = 0;
-            blockY = y - blockH;
+    private void collisionDetection(int x, int y, int w, int h){
+        if(!( block.y + block.height < y || block.y > y + h || 
+               block.x + block.width < x || block.x > x + w )){
+            changeY = 0;
+            block.y = y - block.height;
+           
     }
     }
-    public void collisionDetectionTriangle(int x, int y, int w, int h ){
-         if(!( blockY + blockH < y || blockY > y + h || 
-               blockX + blockW < x || blockX > x + w )){
-           changeY = 0;
-            blockY = y - blockH;
-    }
-    }
+//    private void collisionDetectionTriangle(int x, int y, int w, int h ){
+//         if(!( block.y + block.height < y || block.y > y + h || 
+//               block.x + block.width < x || block.width > x + w )){
+//           changeY = 0;
+//            block.y = y - block.height;
+    //}
+  //  }
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
 
         // stop block from leaveing the screen 
-        if (blockX + 50 > WIDTH) {
-            blockX = WIDTH - 50;
+        if (block.x + 50 > WIDTH) {
+            block.x = WIDTH - 50;
         }else{
-        }if(blockX < 0){
-                blockX =  0;
+        }if(block.x < 0){
+                block.x =  0;
             
             }
         
         // move left or right
         if (moveleft) {
-            blockX = blockX - 5;
+            block.x = block.x - 5;
         } else if (moveright) {
-                blockX = blockX +5;
+                block.x = block.x +5;
             }
          // jump on command
          if(jump){
-                blockY = blockY - 15;
+                block.y = block.y - 15;
             }
         
         
         // gravity on player
         changeY = changeY + gravity;
-        blockY = blockY + changeY;
+        block.y = block.y + changeY;
         
         // Collison detection
        collisionDetection(firstrowX, firstrowY, firstrowW, firstrowH);
@@ -234,12 +240,18 @@ public class Mygame extends JComponent implements ActionListener {
        collisionDetection(thirdrowX, thirdrowY, thirdrowW, thirdrowH);
        collisionDetection(thirdrowX2, thirdrowY2, thirdrowW2, thirdrowH2);
        collisionDetection(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
-       collisionDetection(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2); 
-       collisionDetectionTriangle(tri1.x,tri1.y, tri1.width, tri1.height );
+       collisionDetection(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
+       CollisionDetectionObstacles();
+       
+       
        }
-    
-    public void restartgame(){
-      
+        
+        
+    private void CollisionDetectionObstacles (){
+      if(block.intersects(tri1)){
+          block.x =0;
+          block.y =0;
+      }
             
         }
     
