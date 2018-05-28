@@ -92,7 +92,7 @@ public class Mygame extends JComponent implements ActionListener {
     int triX2 = 180;
     int triX3 = 185;
     int boxX= 175;
-    Rectangle tri1 = new Rectangle(175, 82, 10, 2);
+    Rectangle tri1 = new Rectangle(175, 82, 10, 20);
     
     
     Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
