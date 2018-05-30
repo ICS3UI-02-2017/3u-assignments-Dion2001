@@ -52,6 +52,7 @@ public class Mygame extends JComponent implements ActionListener {
     int firstrowH = 25;
     int firstrowX = 0;
     int firstrowW = 600;
+    Rectangle firstRow = new Rectangle(0, 100, 600, 25);
     //varibles for the first row second piece
     int firstrowX2 = 700;
     int firstrowY2 = 100;
@@ -91,9 +92,9 @@ public class Mygame extends JComponent implements ActionListener {
     int triX1 = 175;
     int triX2 = 180;
     int triX3 = 185;
-    int boxX= 175;
-    Rectangle tri1 = new Rectangle(175, 92, 10, 10);
     
+    Rectangle tri1 = new Rectangle(175, 92, 10, 10);
+    Rectangle floor1 = new Rectangle(0,249, 300, 26 );
     
     Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
     
@@ -154,7 +155,7 @@ public class Mygame extends JComponent implements ActionListener {
         // Floors
         g.setColor(Color.WHITE);
         //First row
-        g.fillRect(firstrowX, firstrowY, firstrowW, firstrowH);
+        g.fillRect(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
         g.fillRect(firstrowX2, firstrowY2, firstrowW2, firstrowH2);
         // Second row
         g.fillRect(secondrowX, secondrowY, secondrowW, secondrowH);
@@ -165,7 +166,10 @@ public class Mygame extends JComponent implements ActionListener {
         // fourth Row
         g.fillRect(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
         g.fillRect(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
-        // obit
+       
+        
+        g.setColor(Color.RED);
+        g.fillRect(floor1.x,floor1.y, floor1.width, floor1.height );
         
         
         
@@ -197,24 +201,29 @@ public class Mygame extends JComponent implements ActionListener {
     }
     }
     // move floors to right then reappear on left side of screen
-//  private void MovingFloorsRight(int x){
-//          x += 1;
-//       if (x > WIDTH) {
-//            x = 0;
-//        }
-//    
-//}
+  private void MovingFloorsRight(int x){
+          x += 1;
+       if (x > WIDTH) {
+            x = 0;
+        }
+    
+}
 
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
-     firstrowX += 1;
-     if(firstrowX  > WIDTH){
-         firstrowX = -605;
+        triX1 -=1;
+         triX2 -=1;
+         triX3 -=1;
+         tri1.x -=1;
+     firstRow.x -= 1;
+     if(firstRow.x  > WIDTH){
+         firstRow.x = -600;
+         
      }
      firstrowX2 += 1;
      if(firstrowX2  > WIDTH){
-         firstrowX2 = -605;
+         firstrowX2 = -600;
      }
         // stop block from leaveing the screen 
         if (block.x + 50 > WIDTH) {
@@ -242,7 +251,7 @@ public class Mygame extends JComponent implements ActionListener {
         block.y = block.y + changeY;
         
         // Collison detection on the ground
-       collisionDetection(firstrowX, firstrowY, firstrowW, firstrowH);
+       collisionDetection(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
        collisionDetection(firstrowX2, firstrowY2, firstrowW2, firstrowH2);  
        collisionDetection(secondrowX, secondrowY, secondrowW, secondrowH);
        collisionDetection(secondrowX2, secondrowY2, secondrowW2, secondrowH2);
@@ -251,17 +260,21 @@ public class Mygame extends JComponent implements ActionListener {
        collisionDetection(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
        collisionDetection(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
        CollisionDetectionObstacles(tri1);
+      // CollisionDetectionObstacles(floor1 );
        //MovingFloorsRight(firstrowX);
        
        }
         
         // Collison detection with obstacles and if hit go back to start
-    public void CollisionDetectionObstacles (Rectangle x){
-      if(block.intersects(x)){
+    public void CollisionDetectionObstacles (Rectangle obstacle){
+      if(block.intersects(obstacle)){
           block.x =0;
           block.y =0;
+          firstRow.x =0; 
+          
+          
       }
-            
+           
         }
     
             
