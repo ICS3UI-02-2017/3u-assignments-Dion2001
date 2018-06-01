@@ -64,31 +64,37 @@ public class Mygame extends JComponent implements ActionListener {
     int secondrowY =250;
     int secondrowW = 400;
     int secondrowH = 25;
+    Rectangle secondrow = new Rectangle(0, 250, 400, 25);
     // variables for second row on right
     int secondrowX2 = 500;
     int secondrowY2 = 250;
     int secondrowW2 = 800;
     int secondrowH2 = 25;
+    Rectangle secondrow2 = new Rectangle(500, 250, 800, 25);
     // varibles for third row on left
     int thirdrowX = 0;
     int thirdrowY = 400;
     int thirdrowW = 50;
     int thirdrowH =25;
+    Rectangle thirdrow = new Rectangle(-600, 400, 650, 25);
     // varibles for third row on right
     int thirdrowX2 = 150;
     int thirdrowY2 = 400;
     int thirdrowW2 = 650;
     int thirdrowH2 = 25;
+    Rectangle thirdrow2 = new Rectangle(150, 400, 600, 25);
     // variables for fourth row on left
     int fourthrowX = 0;
     int fourthrowY = 550;
     int fourthrowW = 300;
     int fourthrowH = 25;
+    Rectangle fourthrow = new Rectangle(-300, 550, 600, 25);
     // variables for fourth row on right
     int fourthrowX2 = 400;
     int fourthrowY2 = 550;
     int fourthrowW2 = 400;
     int fourthrowH2 = 25;
+    Rectangle fourthrow2 = new Rectangle(400, 550, 600, 25);
     // obsticals and the box it goes over for collision 
     int triX1 = 175;
     int triX2 = 180;
@@ -159,18 +165,17 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillRect(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
         g.fillRect(firstrow2.x, firstrow2.y, firstrow2.width, firstrow2.height);
         // Second row
-        g.fillRect(secondrowX, secondrowY, secondrowW, secondrowH);
-        g.fillRect(secondrowX2, secondrowY2, secondrowW2, secondrowH2);
+        g.fillRect(secondrow.x, secondrow.y, secondrow.width, secondrow.height);
+        g.fillRect(secondrow2.x, secondrow2.y, secondrow2.width, secondrow.height);
         // Third Row
-        g.fillRect(thirdrowX, thirdrowY, thirdrowW, thirdrowH);
-        g.fillRect(thirdrowX2, thirdrowY2, thirdrowW2, thirdrowH2);
+        g.fillRect(thirdrow.x, thirdrow.y, thirdrow.width, thirdrow.height);
+        g.fillRect(thirdrow2.x, thirdrow2.y, thirdrow2.width, thirdrow2.height);
         // fourth Row
-        g.fillRect(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
-        g.fillRect(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
+        g.fillRect(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
+        g.fillRect(fourthrow2.x, fourthrow2.y, fourthrow2.width, fourthrow2.height);
        
-        
         g.setColor(Color.RED);
-//        g.fillRect(floor1.x,floor1.y, floor1.width, floor1.height );
+        g.fillRect(floor1.x,floor1.y, floor1.width, floor1.height );
         
         
         
@@ -202,10 +207,10 @@ public class Mygame extends JComponent implements ActionListener {
     }
     }
     // move floors to right then reappear on left side of screen
-  private void MovingFloorsRight(int x){
-          x += 1;
-       if (x > WIDTH) {
-            x = 0;
+  private void MovingFloorsRight(Rectangle x){
+          x.x -= 1;
+       if(x.x + x.width < 0){
+         x.x = 800;
         }
     
 }
@@ -217,21 +222,19 @@ public class Mygame extends JComponent implements ActionListener {
          triX2 -=1;
          triX3 -=1;
          tri1.x -=1;
-         if(tri1.x > 0){
+         if(tri1.x < 0){
              tri1.x = 800;
          }
-         if(tri1.x > 0){
-           //  fgbsrj,fgbfsdfgsdrghdthdthadtgh
-         }
-     firstRow.x -= 10;
-     if(firstRow.x + firstRow.width < 0){
-         firstRow.x = 800;
+        
+           
          
-     }
-     firstrow2.x -= 10;
-     if(firstrow2.x + firstrow2.width < 0){
-         firstrow2.x = 800;
-     }
+         if(triX3 < 0){
+             triX1 = 800;
+             triX2 = 805;
+             triX3 = 810;
+             tri1.x = 800;
+         }
+//     
         // stop block from leaveing the screen 
         if (block.x + 50 > WIDTH) {
             block.x = WIDTH - 50;
@@ -266,10 +269,19 @@ public class Mygame extends JComponent implements ActionListener {
        collisionDetection(thirdrowX2, thirdrowY2, thirdrowW2, thirdrowH2);
        collisionDetection(fourthrowX, fourthrowY, fourthrowW, fourthrowH);
        collisionDetection(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
-      // CollisionDetectionObstacles(tri1);
-//       CollisionDetectionObstacles(floor1 );
-       //MovingFloorsRight(firstrowX);
+       CollisionDetectionObstacles(tri1);
+       CollisionDetectionObstacles(floor1);
+       MovingFloorsRight(firstRow);
+       MovingFloorsRight(firstrow2);
+//       MovingFloorsRight(secondrow);
+//       MovingFloorsRight(secondrow2);
+       MovingFloorsRight(thirdrow);
+       MovingFloorsRight(thirdrow2);
+//       MovingFloorsRight(fourthrow);
+//       MovingFloorsRight(fourthrow2);
        
+      
+               
        }
         
         // Collison detection with obstacles and if hit go back to start
