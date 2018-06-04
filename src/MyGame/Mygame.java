@@ -278,7 +278,7 @@ private void MovingFloorsLeft(Rectangle x){
         // Collison detection on the ground
        collisionDetection(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
        collisionDetection(firstrow2.x, firstrow2.y, firstrow2.width, firstrow2.height);  
-       collisionDetection(secondrowX, secondrowY, secondrowW, secondrowH);
+       collisionDetection(secondrow.x, secondrow.y, secondrow.width, secondrow.height);
        collisionDetection(secondrowX2, secondrowY2, secondrowW2, secondrowH2);
        collisionDetection(thirdrowX, thirdrowY, thirdrowW, thirdrowH);
        collisionDetection(thirdrowX2, thirdrowY2, thirdrowW2, thirdrowH2);
@@ -286,14 +286,8 @@ private void MovingFloorsLeft(Rectangle x){
        collisionDetection(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
        CollisionDetectionObstacles(tri1);
        CollisionDetectionObstacles(floor1);
-//       MovingFloorsRight(firstRow);
-//       MovingFloorsRight(firstrow2);
+      
 
-////       MovingFloorsRight(thirdrow);
-//       MovingFloorsRight(thirdrow2);
-//       MovingFloorsRight(fourthrow);
-//       MovingFloorsRight(fourthrow2);
-//       //MovingFloorsLeft(floor1);
        
       
                
