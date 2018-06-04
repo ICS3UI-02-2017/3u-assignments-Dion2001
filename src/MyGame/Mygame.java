@@ -60,11 +60,11 @@ public class Mygame extends JComponent implements ActionListener {
     int firstrowH2 = 25;
     Rectangle firstrow2 = new Rectangle(700, 100, 600, 25);
     // varibles for the second row on left
-    int secondrowX =0;
+    int secondrowX =-400;
     int secondrowY =250;
     int secondrowW = 400;
     int secondrowH = 25;
-    Rectangle secondrow = new Rectangle(0, 250, 400, 25);
+    Rectangle secondrow = new Rectangle(-200, 250, 600, 25);
     // variables for second row on right
     int secondrowX2 = 500;
     int secondrowY2 = 250;
@@ -76,13 +76,13 @@ public class Mygame extends JComponent implements ActionListener {
     int thirdrowY = 400;
     int thirdrowW = 50;
     int thirdrowH =25;
-    Rectangle thirdrow = new Rectangle(-600, 400, 650, 25);
+    Rectangle thirdrow = new Rectangle(-500, 400, 750, 25);
     // varibles for third row on right
     int thirdrowX2 = 150;
     int thirdrowY2 = 400;
     int thirdrowW2 = 650;
     int thirdrowH2 = 25;
-    Rectangle thirdrow2 = new Rectangle(150, 400, 600, 25);
+    Rectangle thirdrow2 = new Rectangle(350, 400, 650, 25);
     // variables for fourth row on left
     int fourthrowX = 0;
     int fourthrowY = 550;
@@ -214,10 +214,24 @@ public class Mygame extends JComponent implements ActionListener {
         }
     
 }
-
+private void MovingFloorsLeft(Rectangle x){
+    x.x += 1;
+    if(x.x > WIDTH){
+        x.x = 0 - x.width;
+    }
+}
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
+         firstRow.x -= 1;
+        if(firstRow.x + firstRow.width < 0){
+            firstRow.x = 800;
+        }
+        firstrow2.x -=1;
+         if(firstrow2.x + firstrow2.width < 0){
+            firstrow2.x = 800;
+         }
+        
         triX1 -=1;
          triX2 -=1;
          triX3 -=1;
@@ -260,6 +274,7 @@ public class Mygame extends JComponent implements ActionListener {
         changeY = changeY + gravity;
         block.y = block.y + changeY;
         
+       
         // Collison detection on the ground
        collisionDetection(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
        collisionDetection(firstrow2.x, firstrow2.y, firstrow2.width, firstrow2.height);  
@@ -271,14 +286,14 @@ public class Mygame extends JComponent implements ActionListener {
        collisionDetection(fourthrowX2, fourthrowY2, fourthrowW2, fourthrowH2);
        CollisionDetectionObstacles(tri1);
        CollisionDetectionObstacles(floor1);
-       MovingFloorsRight(firstRow);
-       MovingFloorsRight(firstrow2);
-//       MovingFloorsRight(secondrow);
-//       MovingFloorsRight(secondrow2);
-       MovingFloorsRight(thirdrow);
-       MovingFloorsRight(thirdrow2);
+//       MovingFloorsRight(firstRow);
+//       MovingFloorsRight(firstrow2);
+
+////       MovingFloorsRight(thirdrow);
+//       MovingFloorsRight(thirdrow2);
 //       MovingFloorsRight(fourthrow);
 //       MovingFloorsRight(fourthrow2);
+//       //MovingFloorsLeft(floor1);
        
       
                
