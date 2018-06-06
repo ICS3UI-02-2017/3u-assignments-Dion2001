@@ -100,20 +100,20 @@ public class Mygame extends JComponent implements ActionListener {
     int triX2 = 185;
     int triX3 = 195;
     
-    Rectangle tri1 = new Rectangle(175, 92, 25, 10);
+    Rectangle invis1 = new Rectangle(175, 92, 25, 10);
     Rectangle fireBall = new Rectangle(175, 72, 25, 25);
     Rectangle invis2 = new Rectangle(0, 222, 25, 25);
     Rectangle fireBall2 = new Rectangle(0, 222, 25, 25);
+    Rectangle invis3 = new Rectangle(775, 375, 25, 25);
+    Rectangle fireBall3 = new Rectangle(775, 372, 25, 25);
     Rectangle floor1 = new Rectangle(0,249, 300, 26 );
+    Rectangle floor2 = new Rectangle(455, 399, 365, 26);
     Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
-    
-     
-   // Boolean r2up = false;
     //Gravity 
     int changeY = 0;
     int gravity = 2;
     // score
-    
+    int score =0;
     
 
     // GAME VARIABLES END HERE    
@@ -179,7 +179,7 @@ public class Mygame extends JComponent implements ActionListener {
        
         g.setColor(Color.RED);
         g.fillRect(floor1.x,floor1.y, floor1.width, floor1.height );
-        
+        g.fillRect(floor2.x,floor2.y, floor2.width, floor2.height);
         
         
         
@@ -189,10 +189,10 @@ public class Mygame extends JComponent implements ActionListener {
 //        g.fillPolygon(triangle1x, triangle1y, 3);
         g.fillOval(fireBall.x, fireBall.y, fireBall.width, fireBall.height);
         g.fillOval(fireBall2.x, fireBall2.y, fireBall2.width, fireBall2.height);
-        
+        g.fillOval(fireBall3.x, fireBall3.y, fireBall3.width, fireBall3.height);
         
         // draw score
-        
+        g.drawString(""+ score, WIDTH /2 -50 , 50);
         // GAME DRAWING ENDS HERE
     }
 
@@ -227,21 +227,25 @@ private void MovingFloorsLeft(Rectangle x){
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
-//         firstRow.x -= 1;
-//        if(firstRow.x + firstRow.width < 0){
-//            firstRow.x = 800;
-//        }
-//        firstrow2.x -=1;
-//         if(firstrow2.x + firstrow2.width < 0){
-//            firstrow2.x = 800;
-//         }
-        
-        fireBall.x -=1;
-         tri1.x -=1;
-         if(tri1.x < 0){
-             tri1.x = 800;
-             fireBall.x = 800;
-         }     
+        fireBall.x -=3;
+         invis1.x -=3;
+         if(invis1.x < -25){
+             invis1.x = 825;
+             fireBall.x = 825;
+         }    
+         fireBall2.x +=3;
+         invis2.x +=3;
+         if(invis2.x  > WIDTH + 25){
+             invis2.x = -25;
+             fireBall2.x= -25;
+         }
+         fireBall3.x -=3;
+         invis3.x -=3;
+         if(invis3.x < -25){
+             invis3.x = 825;
+             fireBall3.x = 825;
+             
+         }
         // stop block from leaveing the screen 
         if (block.x + 50 > WIDTH) {
             block.x = WIDTH - 50;
@@ -289,10 +293,11 @@ private void MovingFloorsLeft(Rectangle x){
        collisionDetection(thirdrow2.x, thirdrow2.y, thirdrow2.width, thirdrow2.height);
        collisionDetection(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
        collisionDetection(fourthrow2.x , fourthrow2.y, fourthrow2.width, fourthrow2.height);
-       CollisionDetectionObstacles(tri1);
        CollisionDetectionObstacles(floor1);
+       CollisionDetectionObstacles(floor2);
+       CollisionDetectionObstacles(invis1);
        CollisionDetectionObstacles(invis2);
-       
+       CollisionDetectionObstacles(invis3);
        MovingFloorsLeft(firstRow);
        MovingFloorsLeft(firstrow2);
        MovingFloorsLeft(fourthrow);
@@ -310,12 +315,18 @@ private void MovingFloorsLeft(Rectangle x){
           block.y =0;
           firstRow.x =0; 
           firstrow2.x =700;
-          tri1.x= 175;
+          fourthrow.x = -300;
+          fourthrow2.x = 400;
           triX1 = 175;
           triX2 = 180;
           triX3 = 185;
+          invis1.x= 175;
           fireBall.x = 175;
-          
+          invis2.x = 0;
+          fireBall2.x = 0;
+          invis3.x = 825;
+          fireBall3.x= 825;
+          score++;
           
       }
            
