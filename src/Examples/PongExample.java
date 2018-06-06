@@ -197,7 +197,7 @@ public class PongExample extends JComponent implements ActionListener {
             ball.y = HEIGHT/2 - ball.height/2;
         }
     }
-
+    
     // Used to implement any of the Mouse Actions
     private class Mouse extends MouseAdapter {
 

@@ -101,9 +101,10 @@ public class Mygame extends JComponent implements ActionListener {
     int triX3 = 195;
     
     Rectangle tri1 = new Rectangle(175, 92, 25, 10);
-    Rectangle floor1 = new Rectangle(0,249, 300, 26 );
     Rectangle fireBall = new Rectangle(175, 72, 25, 25);
+    Rectangle invis2 = new Rectangle(0, 222, 25, 25);
     Rectangle fireBall2 = new Rectangle(0, 222, 25, 25);
+    Rectangle floor1 = new Rectangle(0,249, 300, 26 );
     Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
     
      
@@ -290,6 +291,8 @@ private void MovingFloorsLeft(Rectangle x){
        collisionDetection(fourthrow2.x , fourthrow2.y, fourthrow2.width, fourthrow2.height);
        CollisionDetectionObstacles(tri1);
        CollisionDetectionObstacles(floor1);
+       CollisionDetectionObstacles(invis2);
+       
        MovingFloorsLeft(firstRow);
        MovingFloorsLeft(firstrow2);
        MovingFloorsLeft(fourthrow);
