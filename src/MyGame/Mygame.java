@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -99,7 +100,7 @@ public class Mygame extends JComponent implements ActionListener {
     int triX1 = 175;
     int triX2 = 185;
     int triX3 = 195;
-    
+    Font biggerFont  = new Font("arial", Font.BOLD, 36);
 //    Rectangle invis1 = new Rectangle(175, 92, 25, 10);
     Rectangle fireBall = new Rectangle(250, 72, 25, 25);
 //    Rectangle invis2 = new Rectangle(0, 222, 25, 25);
@@ -122,8 +123,10 @@ public class Mygame extends JComponent implements ActionListener {
     int changeY = 0;
     int gravity = 2;
     // score
-    int score =10;
+    int score =1;
+    boolean startscreen = true;
     boolean endScreen = false;
+    boolean startgame = false;
     
 
     // GAME VARIABLES END HERE    
@@ -205,11 +208,14 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillOval(fireBall6.x, fireBall6.y, fireBall6.width, fireBall6.height);
         // draw score
         g.drawString(""+ score, WIDTH /2 -50 , 50);
-        
+        if(startscreen == true){
+        g.setFont(biggerFont);
+        g.drawString("Select Difficulty", 400, 300);
+        }
         if(block.y > HEIGHT){
             endScreen = true;
             g.setColor(Color.RED);
-            g.drawString("You Won", 500, 300);
+            g.drawString("Your trials are: " + score, 500, 300);
             
         }
         // GAME DRAWING ENDS HERE
@@ -246,6 +252,7 @@ private void MovingFloorsLeft(Rectangle x){
     // The main game loop
     // In here is where all the logic for my game will go
     public void gameLoop() {
+        if(startgame == true){
         fireBall.x -=3;
          if(fireBall.x < -25){
              fireBall.x = 825;
@@ -302,13 +309,13 @@ private void MovingFloorsLeft(Rectangle x){
        collisionDetection(thirdrow2.x, thirdrow2.y, thirdrow2.width, thirdrow2.height);
        collisionDetection(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
        collisionDetection(fourthrow2.x , fourthrow2.y, fourthrow2.width, fourthrow2.height);
-//       CollisionDetectionObstacles(floor1);
-//       CollisionDetectionObstacles(floor2);
-//       CollisionDetectionObstacles(fireBall);
-//       CollisionDetectionObstacles(fireBall2);
-//       CollisionDetectionObstacles(fireBall3);
-//       CollisionDetectionObstacles(fireBall4);
-//       CollisionDetectionObstacles(fireBall5);
+       CollisionDetectionObstacles(floor1);
+       CollisionDetectionObstacles(floor2);
+       CollisionDetectionObstacles(fireBall);
+       CollisionDetectionObstacles(fireBall2);
+       CollisionDetectionObstacles(fireBall3);
+       CollisionDetectionObstacles(fireBall4);
+       CollisionDetectionObstacles(fireBall5);
        MovingFloorsLeft(firstRow);
        MovingFloorsLeft(firstrow2);
        MovingFloorsLeft(fourthrow);
@@ -316,7 +323,7 @@ private void MovingFloorsLeft(Rectangle x){
 
        
       
-               
+        }       
        }
         
         // Collison detection with obstacles and if hit go back to start
@@ -339,7 +346,7 @@ private void MovingFloorsLeft(Rectangle x){
           fireBall3.x= 825;
           fireBall4.x = -25;
           fireBall5.x = 825;
-          score--;
+          score++;
           
       }
            
@@ -389,8 +396,19 @@ private void MovingFloorsLeft(Rectangle x){
                     if(keycode == KeyEvent.VK_W){
                 jump = true;
                 }
-            
-            
+            if(keycode == KeyEvent.VK_SPACE){
+                if(startscreen == true){
+                    startscreen = false;
+                    startgame =true;
+                    
+                }  
+            }
+             if(keycode == KeyEvent.VK_P){
+                        if(startscreen == false){
+                            startscreen = true;
+                            startgame = false;
+                    }
+            }
         }
 
         // if a key has been released
@@ -409,8 +427,6 @@ private void MovingFloorsLeft(Rectangle x){
                 jump = false;
                     
                 }
-                 
-            
         }
     }
 
