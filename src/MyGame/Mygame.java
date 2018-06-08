@@ -210,7 +210,7 @@ public class Mygame extends JComponent implements ActionListener {
         g.drawString(""+ score, WIDTH /2 -50 , 50);
         if(startscreen == true){
         g.setFont(biggerFont);
-        g.drawString("Select Difficulty", 400, 300);
+        g.drawString("Select", 400, 300);
         }
         if(block.y > HEIGHT){
             endScreen = true;
