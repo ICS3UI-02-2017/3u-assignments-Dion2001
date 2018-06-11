@@ -45,7 +45,7 @@ public class Mygame extends JComponent implements ActionListener {
     boolean jump = false;
     // Variables for player 
     int blockX = 0;
-    int blockY =50;
+    int blockY = 50;
     int blockW = 50;
     int blockH = 50;
     // Varibles for the first row first piece
@@ -61,8 +61,8 @@ public class Mygame extends JComponent implements ActionListener {
     int firstrowH2 = 25;
     Rectangle firstrow2 = new Rectangle(700, 100, 600, 25);
     // varibles for the second row on left
-    int secondrowX =-400;
-    int secondrowY =250;
+    int secondrowX = -400;
+    int secondrowY = 250;
     int secondrowW = 400;
     int secondrowH = 25;
     Rectangle secondrow = new Rectangle(-200, 250, 600, 25);
@@ -76,7 +76,7 @@ public class Mygame extends JComponent implements ActionListener {
     int thirdrowX = 0;
     int thirdrowY = 400;
     int thirdrowW = 50;
-    int thirdrowH =25;
+    int thirdrowH = 25;
     Rectangle thirdrow = new Rectangle(-500, 400, 750, 25);
     // varibles for third row on right
     int thirdrowX2 = 150;
@@ -100,7 +100,7 @@ public class Mygame extends JComponent implements ActionListener {
     int triX1 = 175;
     int triX2 = 185;
     int triX3 = 195;
-    Font biggerFont  = new Font("arial", Font.BOLD, 36);
+    Font biggerFont = new Font("arial", Font.BOLD, 36);
 //    Rectangle invis1 = new Rectangle(175, 92, 25, 10);
     Rectangle fireBall = new Rectangle(250, 72, 25, 25);
 //    Rectangle invis2 = new Rectangle(0, 222, 25, 25);
@@ -114,20 +114,21 @@ public class Mygame extends JComponent implements ActionListener {
     Rectangle fireBall7 = new Rectangle(320, -280, 25, 25);
     Rectangle fireBall8 = new Rectangle(480, -320, 25, 25);
     Rectangle fireBall9 = new Rectangle(640, -350, 25, 25);
-    
-    
-    Rectangle floor1 = new Rectangle(0,249, 300, 26 );
+    Rectangle floor1 = new Rectangle(0, 249, 300, 26);
     Rectangle floor2 = new Rectangle(455, 399, 365, 26);
     Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
     //Gravity 
     int changeY = 0;
     int gravity = 2;
+    //speeds
+    int fireBallSpeed = 3;
+    int fireBallSpeed2 = 6;
+    int fireBallSpeed3 = 10;
     // score
-    int score =1;
+    int score = 0;
     boolean startscreen = true;
     boolean endScreen = false;
     boolean startgame = false;
-    
 
     // GAME VARIABLES END HERE    
     // Constructor to create the Frame and place the panel in
@@ -189,16 +190,16 @@ public class Mygame extends JComponent implements ActionListener {
         // fourth Row
         g.fillRect(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
         g.fillRect(fourthrow2.x, fourthrow2.y, fourthrow2.width, fourthrow2.height);
-       
+
         g.setColor(Color.RED);
-        g.fillRect(floor1.x,floor1.y, floor1.width, floor1.height );
-        g.fillRect(floor2.x,floor2.y, floor2.width, floor2.height);
-        
-        
-        
+        g.fillRect(floor1.x, floor1.y, floor1.width, floor1.height);
+        g.fillRect(floor2.x, floor2.y, floor2.width, floor2.height);
+
+
+
         g.setColor(Color.RED);
-        int[] triangle1x= {triX1, triX2, triX3};
-        int[] triangle1y ={80, 100, 100};
+        int[] triangle1x = {triX1, triX2, triX3};
+        int[] triangle1y = {80, 100, 100};
 //        g.fillPolygon(triangle1x, triangle1y, 3);
         g.fillOval(fireBall.x, fireBall.y, fireBall.width, fireBall.height);
         g.fillOval(fireBall2.x, fireBall2.y, fireBall2.width, fireBall2.height);
@@ -207,16 +208,16 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillOval(fireBall5.x, fireBall5.y, fireBall5.width, fireBall5.height);
         g.fillOval(fireBall6.x, fireBall6.y, fireBall6.width, fireBall6.height);
         // draw score
-        g.drawString(""+ score, WIDTH /2 -50 , 50);
-        if(startscreen == true){
-        g.setFont(biggerFont);
-        g.drawString("Select", 400, 300);
+        g.drawString("" + score, WIDTH / 2 - 50, 50);
+        if (startscreen == true) {
+            g.setFont(biggerFont);
+            g.drawString("Press Space Bar to Start", 400, 300);
         }
-        if(block.y > HEIGHT){
+        if (block.y > HEIGHT) {
             endScreen = true;
             g.setColor(Color.RED);
             g.drawString("Your trials are: " + score, 500, 300);
-            
+
         }
         // GAME DRAWING ENDS HERE
     }
@@ -226,134 +227,132 @@ public class Mygame extends JComponent implements ActionListener {
     public void preSetup() {
         // Any of your pre setup before the loop starts should go here
     }
-    
-    public void collisionDetection(int x, int y, int w, int h){
-        if(!( block.y + block.height < y || block.y > y + h || 
-               block.x + block.width < x || block.x > x + w )){
+
+    public void collisionDetection(int x, int y, int w, int h) {
+        if (!(block.y + block.height < y || block.y > y + h
+                || block.x + block.width < x || block.x > x + w)) {
             changeY = 0;
             block.y = y - block.height;
-           
-    }
+
+        }
     }
     // move floors to right then reappear on left side of screen
-  private void MovingFloorsRight(Rectangle x){
-          x.x -= 1;
-       if(x.x + x.width < 0){
-         x.x = 800;
+
+    private void MovingFloorsRight(Rectangle x) {
+        x.x -= 1;
+        if (x.x + x.width < 0) {
+            x.x = 800;
         }
-    
-}
-private void MovingFloorsLeft(Rectangle x){
-    x.x += 1;
-    if(x.x > WIDTH){
-        x.x = 0 - x.width;
+
     }
-}
+
+    private void MovingFloorsLeft(Rectangle x) {
+        x.x += 1;
+        if (x.x > WIDTH) {
+            x.x = 0 - x.width;
+        }
+    }
     // The main game loop
     // In here is where all the logic for my game will go
+
     public void gameLoop() {
-        if(startgame == true){
-        fireBall.x -=3;
-         if(fireBall.x < -25){
-             fireBall.x = 825;
-         }    
-         fireBall2.x +=3;
-         if(fireBall2.x  > WIDTH + 25){
-             fireBall2.x= -25;
-         }
-         fireBall3.x -=3;
-         if(fireBall3.x < -25){
-             fireBall3.x = 825;
-         }
-         fireBall4.x +=3;
-         if(fireBall4.x > 825){
-             fireBall4.x = -25;
-         }
-         fireBall5.x -=3;
-         if(fireBall5.x < -25){
-             fireBall5.x = 825;
-         }
-        // stop block from leaveing the screen 
-        if (block.x + 50 > WIDTH) {
-            block.x = WIDTH - 50;
-        }else{
-        }if(block.x < 0){
-                block.x =  0;
+        if (startgame == true) {
+            fireBall.x -= fireBallSpeed;
+            if (fireBall.x < -25) {
+                fireBall.x = 825;
             }
-        
-        // move left or right
-        if (moveleft) {
-            block.x = block.x - 7;
-        } else if (moveright) {
-                block.x = block.x +7;
+            fireBall2.x += fireBallSpeed;
+            if (fireBall2.x > WIDTH + 25) {
+                fireBall2.x = -25;
             }
-         // jump on command
-         if(jump){
+            fireBall3.x -= fireBallSpeed;
+            if (fireBall3.x < -25) {
+                fireBall3.x = 825;
+            }
+            fireBall4.x += fireBallSpeed;
+            if (fireBall4.x > 825) {
+                fireBall4.x = -25;
+            }
+            fireBall5.x -= fireBallSpeed;
+            if (fireBall5.x < -25) {
+                fireBall5.x = 825;
+            }
+            // stop block from leaveing the screen 
+            if (block.x + 50 > WIDTH) {
+                block.x = WIDTH - 50;
+            } else {
+            }
+            if (block.x < 0) {
+                block.x = 0;
+            }
+
+            // move left or right
+            if (moveleft) {
+                block.x = block.x - 7;
+            } else if (moveright) {
+                block.x = block.x + 7;
+            }
+            // jump on command
+            if (jump) {
                 block.y = block.y - 15;
             }
-        
-        if(block.y > HEIGHT){
-            
-        }
-        // gravity on player
-        changeY = changeY + gravity;
-        block.y = block.y + changeY;
-        
-       
-        // Collison detection on the ground
-       collisionDetection(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
-       collisionDetection(firstrow2.x, firstrow2.y, firstrow2.width, firstrow2.height);  
-       collisionDetection(secondrow.x, secondrow.y, secondrow.width, secondrow.height);
-       collisionDetection(secondrow2.x, secondrow2.y, secondrow2.width, secondrow2.height);
-       collisionDetection(thirdrow.x, thirdrow.y, thirdrow.width, thirdrow.height);
-       collisionDetection(thirdrow2.x, thirdrow2.y, thirdrow2.width, thirdrow2.height);
-       collisionDetection(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
-       collisionDetection(fourthrow2.x , fourthrow2.y, fourthrow2.width, fourthrow2.height);
-       CollisionDetectionObstacles(floor1);
-       CollisionDetectionObstacles(floor2);
-       CollisionDetectionObstacles(fireBall);
-       CollisionDetectionObstacles(fireBall2);
-       CollisionDetectionObstacles(fireBall3);
-       CollisionDetectionObstacles(fireBall4);
-       CollisionDetectionObstacles(fireBall5);
-       MovingFloorsLeft(firstRow);
-       MovingFloorsLeft(firstrow2);
-       MovingFloorsLeft(fourthrow);
-       MovingFloorsLeft(fourthrow2);
 
-       
-      
-        }       
-       }
-        
-        // Collison detection with obstacles and if hit go back to start
-    public void CollisionDetectionObstacles (Rectangle obstacle){
-      if(block.intersects(obstacle)){
-          block.x =0;
-          block.y =0;
-          firstRow.x =0; 
-          firstrow2.x =700;
-          fourthrow.x = -300;
-          fourthrow2.x = 400;
-          triX1 = 175;
-          triX2 = 180;
-          triX3 = 185;
-//          invis1.x= 175;
-          fireBall.x = 350;
-//          invis2.x = 0;
-          fireBall2.x = 0;
-//          invis3.x = 825;
-          fireBall3.x= 825;
-          fireBall4.x = -25;
-          fireBall5.x = 825;
-          score++;
-          
-      }
-           
+            if (block.y > HEIGHT) {
+            }
+            // gravity on player
+            changeY = changeY + gravity;
+            block.y = block.y + changeY;
+
+
+            // Collison detection on the ground
+            collisionDetection(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
+            collisionDetection(firstrow2.x, firstrow2.y, firstrow2.width, firstrow2.height);
+            collisionDetection(secondrow.x, secondrow.y, secondrow.width, secondrow.height);
+            collisionDetection(secondrow2.x, secondrow2.y, secondrow2.width, secondrow2.height);
+            collisionDetection(thirdrow.x, thirdrow.y, thirdrow.width, thirdrow.height);
+            collisionDetection(thirdrow2.x, thirdrow2.y, thirdrow2.width, thirdrow2.height);
+            collisionDetection(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
+            collisionDetection(fourthrow2.x, fourthrow2.y, fourthrow2.width, fourthrow2.height);
+            CollisionDetectionObstacles(floor1);
+            CollisionDetectionObstacles(floor2);
+            CollisionDetectionObstacles(fireBall);
+            CollisionDetectionObstacles(fireBall2);
+            CollisionDetectionObstacles(fireBall3);
+            CollisionDetectionObstacles(fireBall4);
+            CollisionDetectionObstacles(fireBall5);
+            MovingFloorsLeft(firstRow);
+            MovingFloorsLeft(firstrow2);
+            MovingFloorsLeft(fourthrow);
+            MovingFloorsLeft(fourthrow2);
         }
-    
-            
-    
+    }
+
+    // Collison detection with obstacles and if hit go back to start
+    public void CollisionDetectionObstacles(Rectangle obstacle) {
+        if (block.intersects(obstacle)) {
+            block.x = 0;
+            block.y = 0;
+            firstRow.x = 0;
+            firstrow2.x = 700;
+            fourthrow.x = -300;
+            fourthrow2.x = 400;
+            triX1 = 175;
+            triX2 = 180;
+            triX3 = 185;
+//          invis1.x= 175;
+            fireBall.x = 350;
+//          invis2.x = 0;
+            fireBall2.x = 0;
+//          invis3.x = 825;
+            fireBall3.x = 825;
+            fireBall4.x = -25;
+            fireBall5.x = 825;
+            score++;
+
+        }
+
+    }
+
     // Used to implement any of the Mouse Actions
     private class Mouse extends MouseAdapter {
 
@@ -390,24 +389,40 @@ private void MovingFloorsLeft(Rectangle x){
             if (keycode == KeyEvent.VK_A) {
                 moveleft = true;
             }
-                if (keycode == KeyEvent.VK_D) {
-                    moveright = true;
-                } 
-                    if(keycode == KeyEvent.VK_W){
-                jump = true;
-                }
-            if(keycode == KeyEvent.VK_SPACE){
-                if(startscreen == true){
-                    startscreen = false;
-                    startgame =true;
-                    
-                }  
+            if (keycode == KeyEvent.VK_D) {
+                moveright = true;
             }
-             if(keycode == KeyEvent.VK_P){
-                        if(startscreen == false){
-                            startscreen = true;
-                            startgame = false;
-                    }
+            if (keycode == KeyEvent.VK_W) {
+                jump = true;
+            }
+            
+            if (keycode == KeyEvent.VK_P) {
+                if (startscreen == false) {
+
+                    startgame = false;
+                }
+            }
+            if (startscreen = true) {
+                if (keycode == KeyEvent.VK_1) {
+                    startgame = true;
+                    startscreen = false;
+                    fireBallSpeed = fireBallSpeed;
+                }
+            }
+            if (startscreen = true){
+            if (keycode == KeyEvent.VK_2) {
+                startscreen = false;
+                startgame = true;
+                fireBallSpeed = fireBallSpeed2;
+            }
+            }
+            if (startscreen = true){
+            if (keycode == KeyEvent.VK_3) {
+                startscreen = false;
+                startgame = true;
+                fireBallSpeed = fireBallSpeed3;
+            }
+
             }
         }
 
@@ -420,18 +435,18 @@ private void MovingFloorsLeft(Rectangle x){
             if (keycode == KeyEvent.VK_A) {
                 moveleft = false;
             }
-                if (keycode == KeyEvent.VK_D) {
-                    moveright = false;
-                }
-                    if(keycode == KeyEvent.VK_W){
+            if (keycode == KeyEvent.VK_D) {
+                moveright = false;
+            }
+            if (keycode == KeyEvent.VK_W) {
                 jump = false;
-                    
-                }
+
+            }
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
+@Override
+        public void actionPerformed(ActionEvent ae) {
         preSetup();
         gameLoop();
         repaint();
