@@ -100,7 +100,7 @@ public class Mygame extends JComponent implements ActionListener {
     int triX1 = 175;
     int triX2 = 185;
     int triX3 = 195;
-    Font biggerFont = new Font("arial", Font.BOLD, 36);
+    Font biggerFont = new Font("Times new roman", Font.BOLD, 36);
 //    Rectangle invis1 = new Rectangle(175, 92, 25, 10);
     Rectangle fireBall = new Rectangle(250, 72, 25, 25);
 //    Rectangle invis2 = new Rectangle(0, 222, 25, 25);
@@ -129,6 +129,10 @@ public class Mygame extends JComponent implements ActionListener {
     boolean startscreen = true;
     boolean endScreen = false;
     boolean startgame = false;
+    boolean fireBall6Movement = false;
+    boolean fireBall7Movement = false;
+    boolean fireBall8Movement = false;
+    boolean fireBall9Movement = false;
 
     // GAME VARIABLES END HERE    
     // Constructor to create the Frame and place the panel in
@@ -207,11 +211,14 @@ public class Mygame extends JComponent implements ActionListener {
         g.fillOval(fireBall4.x, fireBall4.y, fireBall4.width, fireBall4.height);
         g.fillOval(fireBall5.x, fireBall5.y, fireBall5.width, fireBall5.height);
         g.fillOval(fireBall6.x, fireBall6.y, fireBall6.width, fireBall6.height);
+        g.fillOval(fireBall7.x, fireBall7.y, fireBall7.width, fireBall7.height);
+        g.fillOval(fireBall8.x, fireBall8.y, fireBall8.width, fireBall8.height);
+        g.fillOval(fireBall9.x, fireBall9.y, fireBall9.width, fireBall9.height);
         // draw score
         g.drawString("" + score, WIDTH / 2 - 50, 50);
         if (startscreen == true) {
             g.setFont(biggerFont);
-            g.drawString("Press Space Bar to Start", 400, 300);
+            g.drawString("Press the 1, 2, or 3 to Select Difficulty", 120, 350);
         }
         if (block.y > HEIGHT) {
             endScreen = true;
@@ -302,8 +309,18 @@ public class Mygame extends JComponent implements ActionListener {
             // gravity on player
             changeY = changeY + gravity;
             block.y = block.y + changeY;
-
-
+            if(fireBall6Movement == true){
+                fireBall6.y += 6;
+            }
+            if(fireBall7Movement == true){
+               fireBall7.y += 6;
+            }
+            if(fireBall8Movement == true){
+               fireBall8.y += 6;
+            }
+            if(fireBall9Movement == true){
+               fireBall9.y += 6;
+            }
             // Collison detection on the ground
             collisionDetection(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
             collisionDetection(firstrow2.x, firstrow2.y, firstrow2.width, firstrow2.height);
@@ -347,6 +364,7 @@ public class Mygame extends JComponent implements ActionListener {
             fireBall3.x = 825;
             fireBall4.x = -25;
             fireBall5.x = 825;
+            
             score++;
 
         }
@@ -395,33 +413,35 @@ public class Mygame extends JComponent implements ActionListener {
             if (keycode == KeyEvent.VK_W) {
                 jump = true;
             }
-            
-            if (keycode == KeyEvent.VK_P) {
-                if (startscreen == false) {
 
-                    startgame = false;
-                }
-            }
-            if (startscreen = true) {
+//            if (keycode == KeyEvent.VK_SPACE) {
+//                if (startscreen == true) {
+//                    startgame = true;
+//                }
+//            }
+            if (startscreen == true) {
                 if (keycode == KeyEvent.VK_1) {
                     startgame = true;
                     startscreen = false;
                     fireBallSpeed = fireBallSpeed;
                 }
             }
-            if (startscreen = true){
             if (keycode == KeyEvent.VK_2) {
-                startscreen = false;
-                startgame = true;
-                fireBallSpeed = fireBallSpeed2;
+                if (startscreen == true) {
+                    startscreen = false;
+                    startgame = true;
+                    fireBall6Movement = true;
+                    fireBall8Movement = true;
+                    fireBallSpeed = fireBallSpeed2;
+                    
+                }
             }
-            }
-            if (startscreen = true){
-            if (keycode == KeyEvent.VK_3) {
-                startscreen = false;
-                startgame = true;
-                fireBallSpeed = fireBallSpeed3;
-            }
+            if (startscreen == true) {
+                if (keycode == KeyEvent.VK_3) {
+                    startscreen = false;
+                    startgame = true;
+                    fireBallSpeed = fireBallSpeed3;
+                }
 
             }
         }
@@ -445,8 +465,8 @@ public class Mygame extends JComponent implements ActionListener {
         }
     }
 
-@Override
-        public void actionPerformed(ActionEvent ae) {
+    @Override
+    public void actionPerformed(ActionEvent ae) {
         preSetup();
         gameLoop();
         repaint();
