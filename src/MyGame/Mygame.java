@@ -14,7 +14,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.awt.image.BufferedImage;
 import static java.awt.image.ImageObserver.ERROR;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 /**
@@ -110,10 +113,11 @@ public class Mygame extends JComponent implements ActionListener {
 //    Rectangle invis4 = new Rectangle(-25, 522, 25, 25);
     Rectangle fireBall4 = new Rectangle(-25, 522, 25, 25);
     Rectangle fireBall5 = new Rectangle(825, 522, 25, 25);
-    Rectangle fireBall6 = new Rectangle(160, -230, 25, 25);
-    Rectangle fireBall7 = new Rectangle(320, -280, 25, 25);
-    Rectangle fireBall8 = new Rectangle(480, -320, 25, 25);
-    Rectangle fireBall9 = new Rectangle(640, -350, 25, 25);
+    
+    Rectangle fireBall6 = new Rectangle(160, 625, 25, 25);
+    Rectangle fireBall7 = new Rectangle(320, 675, 25, 25);
+    Rectangle fireBall8 = new Rectangle(480, 725, 25, 25);
+    Rectangle fireBall9 = new Rectangle(640, 775, 25, 25);
     Rectangle floor1 = new Rectangle(0, 249, 300, 26);
     Rectangle floor2 = new Rectangle(455, 399, 365, 26);
     Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
@@ -133,8 +137,11 @@ public class Mygame extends JComponent implements ActionListener {
     boolean fireBall7Movement = false;
     boolean fireBall8Movement = false;
     boolean fireBall9Movement = false;
+    
+    BufferedImage fireBallImage = loadImage("Fireball1.png");
 
     // GAME VARIABLES END HERE    
+    
     // Constructor to create the Frame and place the panel in
     // You will learn more about this in Grade 12 :)
     public Mygame() {
@@ -163,6 +170,17 @@ public class Mygame extends JComponent implements ActionListener {
         gameTimer = new Timer(desiredTime, this);
         gameTimer.setRepeats(true);
         gameTimer.start();
+    }
+    public BufferedImage loadImage(String name) {
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File(name));
+            
+        }catch (Exception e) {
+            System.out.println("Error reading file");
+            e.printStackTrace();
+        }
+        return img;
     }
 
     // drawing of the game happens in here
@@ -205,8 +223,9 @@ public class Mygame extends JComponent implements ActionListener {
         int[] triangle1x = {triX1, triX2, triX3};
         int[] triangle1y = {80, 100, 100};
 //        g.fillPolygon(triangle1x, triangle1y, 3);
-        g.fillOval(fireBall.x, fireBall.y, fireBall.width, fireBall.height);
-        g.fillOval(fireBall2.x, fireBall2.y, fireBall2.width, fireBall2.height);
+        //g.fillOval(fireBall.x, fireBall.y, fireBall.width, fireBall.height);
+        g.drawImage(fireBallImage,fireBall.x, fireBall.y, fireBall.width, fireBall.height, null);
+        g.drawImage(fireBallImage, fireBall2.x, fireBall2.y, fireBall2.width, fireBall2.height, null);
         g.fillOval(fireBall3.x, fireBall3.y, fireBall3.width, fireBall3.height);
         g.fillOval(fireBall4.x, fireBall4.y, fireBall4.width, fireBall4.height);
         g.fillOval(fireBall5.x, fireBall5.y, fireBall5.width, fireBall5.height);
@@ -218,7 +237,7 @@ public class Mygame extends JComponent implements ActionListener {
         g.drawString("" + score, WIDTH / 2 - 50, 50);
         if (startscreen == true) {
             g.setFont(biggerFont);
-            g.drawString("Press the 1, 2, or 3 to Select Difficulty", 120, 350);
+            g.drawString("Press buttons 1, 2, or 3 to Select Difficulty", 192, 350);
         }
         if (block.y > HEIGHT) {
             endScreen = true;
@@ -243,16 +262,7 @@ public class Mygame extends JComponent implements ActionListener {
 
         }
     }
-    // move floors to right then reappear on left side of screen
-
-    private void MovingFloorsRight(Rectangle x) {
-        x.x -= 1;
-        if (x.x + x.width < 0) {
-            x.x = 800;
-        }
-
-    }
-
+    // move floors to left then reappear on right side of screen
     private void MovingFloorsLeft(Rectangle x) {
         x.x += 1;
         if (x.x > WIDTH) {
@@ -310,16 +320,28 @@ public class Mygame extends JComponent implements ActionListener {
             changeY = changeY + gravity;
             block.y = block.y + changeY;
             if(fireBall6Movement == true){
-                fireBall6.y += 6;
+                fireBall6.y -= 6;
             }
             if(fireBall7Movement == true){
-               fireBall7.y += 6;
+               fireBall7.y -= 6;
             }
             if(fireBall8Movement == true){
-               fireBall8.y += 6;
+               fireBall8.y -= 6;
             }
             if(fireBall9Movement == true){
-               fireBall9.y += 6;
+               fireBall9.y -= 6;
+            }
+            if (fireBall6.y < -150){
+                fireBall6.y = 625;
+            }
+            if (fireBall7.y < -100){
+                fireBall7.y = 675;
+            }
+            if (fireBall8.y < -50){
+                fireBall8.y = 725;
+            }
+            if (fireBall9.y < 0){
+                fireBall9.y = 775;
             }
             // Collison detection on the ground
             collisionDetection(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
@@ -337,6 +359,10 @@ public class Mygame extends JComponent implements ActionListener {
             CollisionDetectionObstacles(fireBall3);
             CollisionDetectionObstacles(fireBall4);
             CollisionDetectionObstacles(fireBall5);
+            CollisionDetectionObstacles(fireBall6);
+            CollisionDetectionObstacles(fireBall7);
+            CollisionDetectionObstacles(fireBall8);
+            CollisionDetectionObstacles(fireBall9);
             MovingFloorsLeft(firstRow);
             MovingFloorsLeft(firstrow2);
             MovingFloorsLeft(fourthrow);
@@ -364,7 +390,10 @@ public class Mygame extends JComponent implements ActionListener {
             fireBall3.x = 825;
             fireBall4.x = -25;
             fireBall5.x = 825;
-            
+            fireBall6.y = 625;
+            fireBall7.y = 675;
+            fireBall8.y = 725;
+            fireBall9.y = 775;
             score++;
 
         }
@@ -414,11 +443,7 @@ public class Mygame extends JComponent implements ActionListener {
                 jump = true;
             }
 
-//            if (keycode == KeyEvent.VK_SPACE) {
-//                if (startscreen == true) {
-//                    startgame = true;
-//                }
-//            }
+
             if (startscreen == true) {
                 if (keycode == KeyEvent.VK_1) {
                     startgame = true;
@@ -440,6 +465,10 @@ public class Mygame extends JComponent implements ActionListener {
                 if (keycode == KeyEvent.VK_3) {
                     startscreen = false;
                     startgame = true;
+                    fireBall6Movement = true;
+                    fireBall8Movement = true;
+                    fireBall7Movement = true;
+                    fireBall9Movement = true;
                     fireBallSpeed = fireBallSpeed3;
                 }
 
