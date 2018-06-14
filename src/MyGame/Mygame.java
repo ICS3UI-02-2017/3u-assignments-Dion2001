@@ -51,61 +51,27 @@ public class Mygame extends JComponent implements ActionListener {
     int blockY = 50;
     int blockW = 50;
     int blockH = 50;
+     Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
     // Varibles for the first row first piece
-    int firstrowY = 100;
-    int firstrowH = 25;
-    int firstrowX = 0;
-    int firstrowW = 600;
     Rectangle firstRow = new Rectangle(0, 100, 600, 25);
     //varibles for the first row second piece
-    int firstrowX2 = 700;
-    int firstrowY2 = 100;
-    int firstrowW2 = 600;
-    int firstrowH2 = 25;
     Rectangle firstrow2 = new Rectangle(700, 100, 600, 25);
     // varibles for the second row on left
-    int secondrowX = -400;
-    int secondrowY = 250;
-    int secondrowW = 400;
-    int secondrowH = 25;
     Rectangle secondrow = new Rectangle(-200, 250, 600, 25);
     // variables for second row on right
-    int secondrowX2 = 500;
-    int secondrowY2 = 250;
-    int secondrowW2 = 800;
-    int secondrowH2 = 25;
     Rectangle secondrow2 = new Rectangle(500, 250, 800, 25);
     // varibles for third row on left
-    int thirdrowX = 0;
-    int thirdrowY = 400;
-    int thirdrowW = 50;
-    int thirdrowH = 25;
     Rectangle thirdrow = new Rectangle(-500, 400, 750, 25);
     // varibles for third row on right
-    int thirdrowX2 = 150;
-    int thirdrowY2 = 400;
-    int thirdrowW2 = 650;
-    int thirdrowH2 = 25;
     Rectangle thirdrow2 = new Rectangle(350, 400, 650, 25);
     // variables for fourth row on left
-    int fourthrowX = 0;
-    int fourthrowY = 550;
-    int fourthrowW = 300;
-    int fourthrowH = 25;
     Rectangle fourthrow = new Rectangle(-300, 550, 600, 25);
     // variables for fourth row on right
-    int fourthrowX2 = 400;
-    int fourthrowY2 = 550;
-    int fourthrowW2 = 400;
-    int fourthrowH2 = 25;
     Rectangle fourthrow2 = new Rectangle(400, 550, 600, 25);
-    // obsticals and the box it goes over for collision 
-    int triX1 = 175;
-    int triX2 = 185;
-    int triX3 = 195;
+   
     Font biggerFont = new Font("Times new roman", Font.BOLD, 36);
 //    Rectangle invis1 = new Rectangle(175, 92, 25, 10);
-    Rectangle fireBall = new Rectangle(250, 72, 25, 25);
+    Rectangle fireBall = new Rectangle(500, 72, 25, 25);
 //    Rectangle invis2 = new Rectangle(0, 222, 25, 25);
     Rectangle fireBall2 = new Rectangle(0, 222, 25, 25);
 //    Rectangle invis3 = new Rectangle(775, 375, 25, 25);
@@ -113,21 +79,22 @@ public class Mygame extends JComponent implements ActionListener {
 //    Rectangle invis4 = new Rectangle(-25, 522, 25, 25);
     Rectangle fireBall4 = new Rectangle(-25, 522, 25, 25);
     Rectangle fireBall5 = new Rectangle(825, 522, 25, 25);
-    
+    // Vertical Fire Balls
     Rectangle fireBall6 = new Rectangle(160, 625, 25, 25);
     Rectangle fireBall7 = new Rectangle(320, 675, 25, 25);
     Rectangle fireBall8 = new Rectangle(480, 725, 25, 25);
     Rectangle fireBall9 = new Rectangle(640, 775, 25, 25);
+    // FLoor is Lava
     Rectangle floor1 = new Rectangle(0, 249, 300, 26);
-    Rectangle floor2 = new Rectangle(455, 399, 365, 26);
-    Rectangle block = new Rectangle(blockX, blockY, blockW, blockH);
+    Rectangle floor2 = new Rectangle(500, 399, 365, 26);
+   
     //Gravity 
     int changeY = 0;
     int gravity = 2;
     //speeds
     int fireBallSpeed = 3;
-    int fireBallSpeed2 = 6;
-    int fireBallSpeed3 = 10;
+    int fireBallSpeed2 = 5;
+    int fireBallSpeed3 = 7;
     // score
     int score = 0;
     boolean startscreen = true;
@@ -137,8 +104,11 @@ public class Mygame extends JComponent implements ActionListener {
     boolean fireBall7Movement = false;
     boolean fireBall8Movement = false;
     boolean fireBall9Movement = false;
-    
+    // Images 
     BufferedImage fireBallImage = loadImage("Fireball1.png");
+    BufferedImage lavaImage = loadImage("lava.jpg");
+    BufferedImage volcanoImage = loadImage("V2.jpg");
+    
 
     // GAME VARIABLES END HERE    
     
@@ -193,13 +163,13 @@ public class Mygame extends JComponent implements ActionListener {
 
         // GAME DRAWING GOES HERE
         //Back round
-        g.setColor(background);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+       
+        g.drawImage(volcanoImage,0, 0, WIDTH, HEIGHT,null);
         //character
         g.setColor(Color.ORANGE);
         g.fillRect(block.x, block.y, block.width, block.height);
         // Floors
-        g.setColor(Color.WHITE);
+        g.setColor(Color.GRAY);
         //First row
         g.fillRect(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
         g.fillRect(firstrow2.x, firstrow2.y, firstrow2.width, firstrow2.height);
@@ -212,37 +182,33 @@ public class Mygame extends JComponent implements ActionListener {
         // fourth Row
         g.fillRect(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
         g.fillRect(fourthrow2.x, fourthrow2.y, fourthrow2.width, fourthrow2.height);
-
+         // Lava Obsticals
         g.setColor(Color.RED);
-        g.fillRect(floor1.x, floor1.y, floor1.width, floor1.height);
-        g.fillRect(floor2.x, floor2.y, floor2.width, floor2.height);
-
-
-
-        g.setColor(Color.RED);
-        int[] triangle1x = {triX1, triX2, triX3};
-        int[] triangle1y = {80, 100, 100};
-//        g.fillPolygon(triangle1x, triangle1y, 3);
-        //g.fillOval(fireBall.x, fireBall.y, fireBall.width, fireBall.height);
+        g.drawImage(lavaImage,floor1.x, floor1.y, floor1.width, floor1.height,null);
+        g.drawImage(lavaImage,floor2.x, floor2.y, floor2.width, floor2.height,null);
+        // Draw Images of FireBalls
         g.drawImage(fireBallImage,fireBall.x, fireBall.y, fireBall.width, fireBall.height, null);
         g.drawImage(fireBallImage, fireBall2.x, fireBall2.y, fireBall2.width, fireBall2.height, null);
-        g.fillOval(fireBall3.x, fireBall3.y, fireBall3.width, fireBall3.height);
-        g.fillOval(fireBall4.x, fireBall4.y, fireBall4.width, fireBall4.height);
-        g.fillOval(fireBall5.x, fireBall5.y, fireBall5.width, fireBall5.height);
-        g.fillOval(fireBall6.x, fireBall6.y, fireBall6.width, fireBall6.height);
-        g.fillOval(fireBall7.x, fireBall7.y, fireBall7.width, fireBall7.height);
-        g.fillOval(fireBall8.x, fireBall8.y, fireBall8.width, fireBall8.height);
-        g.fillOval(fireBall9.x, fireBall9.y, fireBall9.width, fireBall9.height);
+        g.drawImage(fireBallImage, fireBall3.x, fireBall3.y, fireBall3.width, fireBall3.height, null);
+        g.drawImage(fireBallImage, fireBall4.x, fireBall4.y, fireBall4.width, fireBall4.height,null);
+        g.drawImage(fireBallImage,fireBall5.x, fireBall5.y, fireBall5.width, fireBall5.height,null);
+        g.drawImage(fireBallImage,fireBall6.x, fireBall6.y, fireBall6.width, fireBall6.height,null);
+        g.drawImage(fireBallImage,fireBall7.x, fireBall7.y, fireBall7.width, fireBall7.height,null);
+        g.drawImage(fireBallImage,fireBall8.x, fireBall8.y, fireBall8.width, fireBall8.height,null);
+        g.drawImage(fireBallImage,fireBall9.x, fireBall9.y, fireBall9.width, fireBall9.height,null);
         // draw score
         g.drawString("" + score, WIDTH / 2 - 50, 50);
         if (startscreen == true) {
+            g.setColor(Color.WHITE);
             g.setFont(biggerFont);
-            g.drawString("Press buttons 1, 2, or 3 to Select Difficulty", 192, 350);
+            g.drawString("Press buttons 1, 2, or 3 to Select Difficulty", 104, 350);
         }
+        // Make Final/End Screen
         if (block.y > HEIGHT) {
             endScreen = true;
-            g.setColor(Color.RED);
-            g.drawString("Your trials are: " + score, 500, 300);
+            g.setColor(Color.WHITE);
+            g.setFont(biggerFont);
+            g.drawString("It took you " + score + " trys" , 267, 375);
 
         }
         // GAME DRAWING ENDS HERE
@@ -253,7 +219,7 @@ public class Mygame extends JComponent implements ActionListener {
     public void preSetup() {
         // Any of your pre setup before the loop starts should go here
     }
-
+// Collision Detection for ground blocks
     public void collisionDetection(int x, int y, int w, int h) {
         if (!(block.y + block.height < y || block.y > y + h
                 || block.x + block.width < x || block.x > x + w)) {
@@ -273,7 +239,9 @@ public class Mygame extends JComponent implements ActionListener {
     // In here is where all the logic for my game will go
 
     public void gameLoop() {
+        // only start when start game is true
         if (startgame == true) {
+            //make all fire balls move in a direction and make it reapear on the other side
             fireBall.x -= fireBallSpeed;
             if (fireBall.x < -25) {
                 fireBall.x = 825;
@@ -319,6 +287,7 @@ public class Mygame extends JComponent implements ActionListener {
             // gravity on player
             changeY = changeY + gravity;
             block.y = block.y + changeY;
+            // Move Vertical Fire Balls up and make them reapear at the bottom
             if(fireBall6Movement == true){
                 fireBall6.y -= 6;
             }
@@ -352,6 +321,7 @@ public class Mygame extends JComponent implements ActionListener {
             collisionDetection(thirdrow2.x, thirdrow2.y, thirdrow2.width, thirdrow2.height);
             collisionDetection(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
             collisionDetection(fourthrow2.x, fourthrow2.y, fourthrow2.width, fourthrow2.height);
+            // Collision Detection for Obsticals
             CollisionDetectionObstacles(floor1);
             CollisionDetectionObstacles(floor2);
             CollisionDetectionObstacles(fireBall);
@@ -379,14 +349,8 @@ public class Mygame extends JComponent implements ActionListener {
             firstrow2.x = 700;
             fourthrow.x = -300;
             fourthrow2.x = 400;
-            triX1 = 175;
-            triX2 = 180;
-            triX3 = 185;
-//          invis1.x= 175;
-            fireBall.x = 350;
-//          invis2.x = 0;
+            fireBall.x = 550;
             fireBall2.x = 0;
-//          invis3.x = 825;
             fireBall3.x = 825;
             fireBall4.x = -25;
             fireBall5.x = 825;
@@ -443,7 +407,7 @@ public class Mygame extends JComponent implements ActionListener {
                 jump = true;
             }
 
-
+// level 1
             if (startscreen == true) {
                 if (keycode == KeyEvent.VK_1) {
                     startgame = true;
@@ -451,6 +415,7 @@ public class Mygame extends JComponent implements ActionListener {
                     fireBallSpeed = fireBallSpeed;
                 }
             }
+            // level 2
             if (keycode == KeyEvent.VK_2) {
                 if (startscreen == true) {
                     startscreen = false;
@@ -461,6 +426,7 @@ public class Mygame extends JComponent implements ActionListener {
                     
                 }
             }
+            // level 3
             if (startscreen == true) {
                 if (keycode == KeyEvent.VK_3) {
                     startscreen = false;
