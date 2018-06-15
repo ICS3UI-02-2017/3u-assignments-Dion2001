@@ -68,15 +68,13 @@ public class Mygame extends JComponent implements ActionListener {
     Rectangle fourthrow = new Rectangle(-300, 550, 600, 25);
     // variables for fourth row on right
     Rectangle fourthrow2 = new Rectangle(400, 550, 600, 25);
-   
+    Rectangle underground = new Rectangle(0, 660, 2, 600);
+    // new font
     Font biggerFont = new Font("Times new roman", Font.BOLD, 36);
-//    Rectangle invis1 = new Rectangle(175, 92, 25, 10);
+    // fire balls
     Rectangle fireBall = new Rectangle(500, 72, 25, 25);
-//    Rectangle invis2 = new Rectangle(0, 222, 25, 25);
     Rectangle fireBall2 = new Rectangle(0, 222, 25, 25);
-//    Rectangle invis3 = new Rectangle(775, 375, 25, 25);
     Rectangle fireBall3 = new Rectangle(775, 372, 25, 25);
-//    Rectangle invis4 = new Rectangle(-25, 522, 25, 25);
     Rectangle fireBall4 = new Rectangle(-25, 522, 25, 25);
     Rectangle fireBall5 = new Rectangle(825, 522, 25, 25);
     // Vertical Fire Balls
@@ -84,7 +82,7 @@ public class Mygame extends JComponent implements ActionListener {
     Rectangle fireBall7 = new Rectangle(320, 675, 25, 25);
     Rectangle fireBall8 = new Rectangle(480, 725, 25, 25);
     Rectangle fireBall9 = new Rectangle(640, 775, 25, 25);
-    // FLoor is Lava
+    // Floor is Lava
     Rectangle floor1 = new Rectangle(0, 249, 300, 26);
     Rectangle floor2 = new Rectangle(500, 399, 365, 26);
    
@@ -96,10 +94,11 @@ public class Mygame extends JComponent implements ActionListener {
     int fireBallSpeed2 = 5;
     int fireBallSpeed3 = 7;
     // score
-    int score = 0;
+    int score = 1;
     boolean startscreen = true;
     boolean endScreen = false;
     boolean startgame = false;
+    // vertical fire ball movement on certain levels
     boolean fireBall6Movement = false;
     boolean fireBall7Movement = false;
     boolean fireBall8Movement = false;
@@ -182,6 +181,7 @@ public class Mygame extends JComponent implements ActionListener {
         // fourth Row
         g.fillRect(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
         g.fillRect(fourthrow2.x, fourthrow2.y, fourthrow2.width, fourthrow2.height);
+        g.fillRect(underground.x, underground.y, underground.width, underground.height);
          // Lava Obsticals
         g.setColor(Color.RED);
         g.drawImage(lavaImage,floor1.x, floor1.y, floor1.width, floor1.height,null);
@@ -197,19 +197,29 @@ public class Mygame extends JComponent implements ActionListener {
         g.drawImage(fireBallImage,fireBall8.x, fireBall8.y, fireBall8.width, fireBall8.height,null);
         g.drawImage(fireBallImage,fireBall9.x, fireBall9.y, fireBall9.width, fireBall9.height,null);
         // draw score
-        g.drawString("" + score, WIDTH / 2 - 50, 50);
+        g.setColor(Color.white);
+        g.setFont(biggerFont);
+        g.drawString("" + score, WIDTH / 2 , 50);
         if (startscreen == true) {
             g.setColor(Color.WHITE);
             g.setFont(biggerFont);
             g.drawString("Press buttons 1, 2, or 3 to Select Difficulty", 104, 350);
+           
         }
         // Make Final/End Screen
         if (block.y > HEIGHT) {
             endScreen = true;
+            startgame = false;
             g.setColor(Color.WHITE);
             g.setFont(biggerFont);
-            g.drawString("It took you " + score + " trys" , 267, 375);
-
+            if(score == 1){
+               g.drawString("It took you " + score + " try to win!"  , 267, 375); 
+               g.drawString("Press Escape to Restart", 267, 500);
+            }
+            if(score > 1){
+            g.drawString("It took you " + score + " tries to win!"  , 267, 375);
+            g.drawString("Press Escape to Restart", 267, 500);
+}
         }
         // GAME DRAWING ENDS HERE
     }
@@ -282,8 +292,7 @@ public class Mygame extends JComponent implements ActionListener {
                 block.y = block.y - 15;
             }
 
-            if (block.y > HEIGHT) {
-            }
+           
             // gravity on player
             changeY = changeY + gravity;
             block.y = block.y + changeY;
@@ -312,7 +321,7 @@ public class Mygame extends JComponent implements ActionListener {
             if (fireBall9.y < 0){
                 fireBall9.y = 775;
             }
-            // Collison detection on the ground
+             //Collison detection on the ground
             collisionDetection(firstRow.x, firstRow.y, firstRow.width, firstRow.height);
             collisionDetection(firstrow2.x, firstrow2.y, firstrow2.width, firstrow2.height);
             collisionDetection(secondrow.x, secondrow.y, secondrow.width, secondrow.height);
@@ -321,6 +330,7 @@ public class Mygame extends JComponent implements ActionListener {
             collisionDetection(thirdrow2.x, thirdrow2.y, thirdrow2.width, thirdrow2.height);
             collisionDetection(fourthrow.x, fourthrow.y, fourthrow.width, fourthrow.height);
             collisionDetection(fourthrow2.x, fourthrow2.y, fourthrow2.width, fourthrow2.height);
+            collisionDetection(underground.x, underground.y, underground.width, underground.height);
             // Collision Detection for Obsticals
             CollisionDetectionObstacles(floor1);
             CollisionDetectionObstacles(floor2);
@@ -438,6 +448,15 @@ public class Mygame extends JComponent implements ActionListener {
                     fireBallSpeed = fireBallSpeed3;
                 }
 
+            }
+            if(block.y > HEIGHT){
+                if(keycode == KeyEvent.VK_ESCAPE){   
+                    startscreen = true;
+                     block.y =0;
+                     block.x =0;
+                }
+//               startscreen = true;
+//                startgame = false;
             }
         }
 
