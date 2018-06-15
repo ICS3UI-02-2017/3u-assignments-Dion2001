@@ -187,15 +187,15 @@ public class Mygame extends JComponent implements ActionListener {
         g.drawImage(lavaImage,floor1.x, floor1.y, floor1.width, floor1.height,null);
         g.drawImage(lavaImage,floor2.x, floor2.y, floor2.width, floor2.height,null);
         // Draw Images of FireBalls
-        g.drawImage(fireBallImage,fireBall.x, fireBall.y, fireBall.width, fireBall.height, null);
+        g.drawImage(fireBallImage, fireBall.x, fireBall.y, fireBall.width, fireBall.height, null);
         g.drawImage(fireBallImage, fireBall2.x, fireBall2.y, fireBall2.width, fireBall2.height, null);
         g.drawImage(fireBallImage, fireBall3.x, fireBall3.y, fireBall3.width, fireBall3.height, null);
         g.drawImage(fireBallImage, fireBall4.x, fireBall4.y, fireBall4.width, fireBall4.height,null);
-        g.drawImage(fireBallImage,fireBall5.x, fireBall5.y, fireBall5.width, fireBall5.height,null);
-        g.drawImage(fireBallImage,fireBall6.x, fireBall6.y, fireBall6.width, fireBall6.height,null);
-        g.drawImage(fireBallImage,fireBall7.x, fireBall7.y, fireBall7.width, fireBall7.height,null);
-        g.drawImage(fireBallImage,fireBall8.x, fireBall8.y, fireBall8.width, fireBall8.height,null);
-        g.drawImage(fireBallImage,fireBall9.x, fireBall9.y, fireBall9.width, fireBall9.height,null);
+        g.drawImage(fireBallImage, fireBall5.x, fireBall5.y, fireBall5.width, fireBall5.height,null);
+        g.drawImage(fireBallImage, fireBall6.x, fireBall6.y, fireBall6.width, fireBall6.height,null);
+        g.drawImage(fireBallImage, fireBall7.x, fireBall7.y, fireBall7.width, fireBall7.height,null);
+        g.drawImage(fireBallImage, fireBall8.x, fireBall8.y, fireBall8.width, fireBall8.height,null);
+        g.drawImage(fireBallImage, fireBall9.x, fireBall9.y, fireBall9.width, fireBall9.height,null);
         // draw score
         g.setColor(Color.white);
         g.setFont(biggerFont);
